@@ -387,4 +387,62 @@ import NewsletterBox from '../components/NewsletterBox.astro';
       margin: 0 auto;
     }
   }
+
+  /* ── Mobile optimizations ────────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Fix background-attachment:fixed → scroll pour fluidité iOS/Android */
+    .hero-bg-parallax {
+      background-attachment: scroll;
+      background-position: center center;
+    }
+
+    /* Hero: boutons en colonne sur petits écrans */
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .btn-hero {
+      width: 100%;
+      text-align: center;
+      min-height: 52px;
+    }
+
+    /* Piliers: padding réduit */
+    .pillars-section {
+      padding: clamp(2.5rem, 6vw, 4rem) 0;
+    }
+
+    .section-head {
+      margin-bottom: var(--space-8);
+    }
+
+    /* Jauge Solawi full width */
+    .pillars-gauge-wrap {
+      max-width: 100%;
+      padding: 0 var(--space-4);
+    }
+
+    /* Vision: padding ajusté */
+    .vision-text {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+    }
+
+    /* Scroll indicator: moins intrusif sur très petit écran */
+    .hero-scroll-indicator {
+      bottom: 12px;
+      font-size: 1.1rem;
+    }
+  }
 </style>
