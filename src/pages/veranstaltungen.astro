@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventFilter from '../components/EventFilter.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+---
+
+<BaseLayout 
+  title="Veranstaltungen, Workshops & Mitmachen | Biosain"
+  description="Termine für Jungpflanzenmärkte, Slowfood-Märkte, Praxis-Workshops zu lebendigem Boden und Saatgut sowie Praktika und Saisonjobs am Biohof am Wachtberg."
+>
+  <!-- Hero Section -->
+  <section class="events-hero section-padding">
+    <div class="container text-center container-narrow">
+      <span class="eyebrow">Gemeinsam lernen & erleben</span>
+      <h1 class="events-title">Veranstaltungen & Mitmachen</h1>
+      <p class="events-lead">
+        Workshops, Jungpflanzenmärkte, Slowfood-Märkte, Kunst in der Natur — und die Möglichkeit, bei uns auf dem Hof zu arbeiten, zu lernen und mitzugestalten.
+      </p>
+    </div>
+  </section>
+
+  <!-- Interactive Calendar Filter -->
+  <section class="section-padding calendar-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Kalender 2026</span>
+        <h2>Termine im Überblick</h2>
+        <p>Wählt eine Kategorie, um die entsprechenden Veranstaltungen anzuzeigen:</p>
+      </div>
+
+      <EventFilter />
+    </div>
+  </section>
+
+  <!-- Focus Sections : Workshops, Kunst in der Natur, Praktika -->
+  <section class="section-padding focus-section">
+    <div class="container">
+      <div class="focus-grid">
+        <!-- 4.3 Workshops -->
+        <article class="focus-card">
+          <span class="eyebrow">Wissen weitergeben</span>
+          <h3 class="focus-title">Workshops auf dem Feld</h3>
+          <p class="focus-text">
+            Praxisnahe Workshops rund um lebendige Böden, samenfeste Saatgutvermehrung und regenerativen Gemüsebau — direkt auf dem Feld am Wachtberg. Wir zeigen euch, wie Humus aufgebaut wird und biologische Mischkulturen widerstandsfähig gedeihen.
+          </p>
+          <div class="focus-action">
+            <a href="#newsletter" class="btn btn-secondary btn-sm">
+              Termine per Newsletter erhalten ↓
+            </a>
+          </div>
+        </article>
+
+        <!-- 4.4 Kunst in der Natur -->
+        <article class="focus-card">
+          <span class="eyebrow">Kultur & Ort</span>
+          <h3 class="focus-title">Kunst in der Natur</h3>
+          <p class="focus-text">
+            Während Biosain am Wachtberg Böden und Pflanzen kultiviert, belebt „Kunst in der Natur" durch die Familie Graf den Platz kulturell und künstlerisch. Seit über 25 Jahren findet jährlich ein Landart-Symposium statt, ergänzt durch Konzerte und Ausstellungen.
+          </p>
+          <div class="focus-action">
+            <a href="https://www.kunstindernatur.at" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              kunstindernatur.at besuchen ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 4.5 Praktika & Jobs -->
+        <article class="focus-card highlight-focus-card">
+          <span class="eyebrow">Mit anpacken</span>
+          <h3 class="focus-title">Praktika & Jobs</h3>
+          <p class="focus-text">
+            Als langjährige Marktgärtnerei bietet der Hof die Möglichkeit, ein breites Spektrum an Gemüsekulturen von der Aussaat bis zur Samenernte hautnah kennenzulernen. Das Arbeiten und Lernen findet mitten im Hoforganismus durch die Praxis statt.
+          </p>
+          <ul class="focus-bullets">
+            <li>🌱 Gemüsebau mit samenfesten Sorten</li>
+            <li>🪱 Gesunde Böden und Humusaufbau</li>
+            <li>🌾 Pflanzenselektion und Saatgutvermehrung</li>
+          </ul>
+          <div class="focus-action">
+            <a href="mailto:office.biosain@gmail.com?subject=Bewerbung%20Praktikum%20/%20Mitarbeit" class="btn btn-primary btn-sm">
+              Lebenslauf & Motivation senden ✉️
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Reminder -->
+  <section class="section-padding newsletter-wrapper">
+    <div class="container">
+      <NewsletterBox />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .events-hero {
+    background: var(--gradient-hero);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .events-title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .events-lead {
+    font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+
+  .calendar-section {
+    background-color: var(--color-surface);
+  }
+
+  .section-head {
+    max-width: 600px;
+    margin-bottom: var(--space-6);
+  }
+
+  .section-head h2 {
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-2);
+  }
+
+  /* Focus cards */
+  .focus-section {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .focus-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .highlight-focus-card {
+    border: 2px solid var(--color-brand-secondary);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAFAF4 100%);
+  }
+
+  .focus-title {
+    font-size: 1.35rem;
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .focus-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-5);
+    flex: 1;
+  }
+
+  .focus-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-5) 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: var(--weight-medium);
+    color: var(--color-brand-secondary-dark);
+  }
+
+  .focus-action {
+    margin-top: auto;
+  }
+
+  .newsletter-wrapper {
+    background-color: var(--color-surface);
+  }
+
+  @media (max-width: 960px) {
+    .focus-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

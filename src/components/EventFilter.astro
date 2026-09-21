@@ -1,0 +1,268 @@
+---
+interface EventItem {
+  date: string;
+  title: string;
+  time: string;
+  category: 'maerkte' | 'workshops' | 'kunst' | 'jobs';
+  categoryLabel: string;
+  location: string;
+  infoLink?: string;
+  infoText?: string;
+}
+
+const events: EventItem[] = [
+  {
+    date: "25.–26. April 2026",
+    title: "Jungpflanzenmarkt am Wachtberg",
+    time: "10:00 – 17:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Am Wachtberg 78, 3571 Gars am Kamp",
+    infoLink: "/jungpflanzen",
+    infoText: "Sorten & Details"
+  },
+  {
+    date: "17.–19. April 2026",
+    title: "Raritätenbörse im Botanischen Garten Wien",
+    time: "09:30 – 18:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Botanischer Garten, Mechelgasse 2, 1030 Wien",
+    infoLink: "https://botanischergarten.univie.ac.at",
+    infoText: "Veranstalter ↗"
+  },
+  {
+    date: "1. Mai 2026",
+    title: "Arche Noah Jungpflanzenmarkt",
+    time: "09:00 – 17:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Schloss Schiltern, Obere Str. 40, 3553 Schiltern",
+    infoLink: "https://www.arche-noah.at",
+    infoText: "Arche Noah ↗"
+  },
+  {
+    date: "Mai & Juni 2026",
+    title: "Workshops: Lebendige Böden & Humusaufbau",
+    time: "Termine auf Anfrage & Ankündigung",
+    category: "workshops",
+    categoryLabel: "Workshops",
+    location: "Feld & Schulungsraum am Wachtberg",
+    infoLink: "#newsletter",
+    infoText: "Via Newsletter ankündigen"
+  },
+  {
+    date: "August 2026",
+    title: "Landart-Symposium — Kunst in der Natur",
+    time: "Ganztägig",
+    category: "kunst",
+    categoryLabel: "Kunst in der Natur",
+    location: "Kulturstätte & Wachtberg",
+    infoLink: "https://www.kunstindernatur.at",
+    infoText: "kunstindernatur.at ↗"
+  },
+  {
+    date: "26. September 2026",
+    title: "Slowfood-Markt der Erde",
+    time: "09:00 – 13:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Hauptplatz, 3571 Gars am Kamp",
+    infoLink: "https://www.slowfoodwaldviertel.at/markt-der-erde",
+    infoText: "Slow Food NÖ ↗"
+  },
+  {
+    date: "10. & 24. Oktober 2026",
+    title: "Slowfood-Markt der Erde",
+    time: "09:00 – 13:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Hauptplatz, 3571 Gars am Kamp",
+    infoLink: "https://www.slowfoodwaldviertel.at/markt-der-erde",
+    infoText: "Slow Food NÖ ↗"
+  },
+  {
+    date: "14. & 28. November 2026",
+    title: "Slowfood-Markt der Erde",
+    time: "09:00 – 13:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Hauptplatz, 3571 Gars am Kamp",
+    infoLink: "https://www.slowfoodwaldviertel.at/markt-der-erde",
+    infoText: "Slow Food NÖ ↗"
+  },
+  {
+    date: "12. & 23. Dezember 2026",
+    title: "Slowfood-Markt der Erde (Winter-Edition)",
+    time: "09:00 – 13:00 Uhr / 14:00 – 18:00 Uhr",
+    category: "maerkte",
+    categoryLabel: "Märkte",
+    location: "Hauptplatz, 3571 Gars am Kamp",
+    infoLink: "https://www.slowfoodwaldviertel.at/markt-der-erde",
+    infoText: "Slow Food NÖ ↗"
+  },
+  {
+    date: "Saison 2026",
+    title: "Praktika & Saisonmitarbeit am Bio-Hof",
+    time: "Vollzeit / Teilzeit nach Vereinbarung",
+    category: "jobs",
+    categoryLabel: "Praktika & Jobs",
+    location: "Am Wachtberg 78, 3571 Gars am Kamp",
+    infoLink: "mailto:office.biosain@gmail.com?subject=Bewerbung%20Praktikum",
+    infoText: "Jetzt bewerben ✉️"
+  }
+];
+---
+
+<div class="event-filter-component" id="events-section">
+  <!-- Filter Tabs -->
+  <div class="filter-bar" role="tablist" aria-label="Veranstaltungskategorien">
+    <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+      Alle ({events.length})
+    </button>
+    <button type="button" class="filter-btn" data-filter="maerkte" role="tab" aria-selected="false">
+      Märkte
+    </button>
+    <button type="button" class="filter-btn" data-filter="workshops" role="tab" aria-selected="false">
+      Workshops
+    </button>
+    <button type="button" class="filter-btn" data-filter="kunst" role="tab" aria-selected="false">
+      Kunst in der Natur
+    </button>
+    <button type="button" class="filter-btn" data-filter="jobs" role="tab" aria-selected="false">
+      Praktika & Jobs
+    </button>
+  </div>
+
+  <!-- Events List Table / Cards -->
+  <div class="table-responsive">
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Veranstaltung</th>
+          <th>Uhrzeit</th>
+          <th>Ort</th>
+          <th>Kategorie</th>
+          <th>Aktion</th>
+        </tr>
+      </thead>
+      <tbody>
+        {events.map((event) => (
+          <tr class="event-row" data-category={event.category}>
+            <td class="event-date">
+              <strong>{event.date}</strong>
+            </td>
+            <td class="event-name">
+              <span class="event-title">{event.title}</span>
+            </td>
+            <td class="event-time">{event.time}</td>
+            <td class="event-location">{event.location}</td>
+            <td>
+              <span class:list={["badge", event.category === 'maerkte' ? 'badge-brand' : 'badge-forest']}>
+                {event.categoryLabel}
+              </span>
+            </td>
+            <td class="event-action">
+              {event.infoLink && (
+                <a href={event.infoLink} class="btn btn-secondary btn-xs" target={event.infoLink.startsWith('http') ? '_blank' : undefined} rel={event.infoLink.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                  {event.infoText || "Details"}
+                </a>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const eventRows = document.querySelectorAll<HTMLElement>('.event-row');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle active class
+      filterBtns.forEach(b => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const filter = btn.getAttribute('data-filter');
+
+      eventRows.forEach(row => {
+        if (filter === 'all' || row.getAttribute('data-category') === filter) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .event-filter-component {
+    margin-top: var(--space-6);
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+  }
+
+  .filter-btn {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-card);
+    color: var(--color-ink-soft);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn:hover {
+    background: var(--color-surface-sunken);
+    color: var(--color-ink);
+  }
+
+  .filter-btn.is-active {
+    background: var(--color-brand-secondary);
+    color: #FFFFFF;
+    border-color: var(--color-brand-secondary);
+  }
+
+  .events-table {
+    min-width: 720px;
+  }
+
+  .event-date {
+    color: var(--color-brand-secondary-dark);
+    white-space: nowrap;
+  }
+
+  .event-title {
+    font-weight: var(--weight-bold);
+    color: var(--color-ink);
+    display: block;
+  }
+
+  .event-time, .event-location {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+
+  .btn-xs {
+    padding: 0.35rem 0.85rem;
+    font-size: var(--text-xs);
+    border-radius: var(--radius-full);
+  }
+</style>

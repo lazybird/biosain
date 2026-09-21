@@ -1,0 +1,423 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Bio-Jungpflanzen am Wachtberg | Biosain"
+  description="Samenfeste Jungpflanzen aus biologischem Anbau: Große Sortenvielfalt an Paradeisern, Paprika, Chili und Kräutern für Garten und Balkon. Sortenliste 2026 herunterladen."
+>
+  <!-- Hero Section -->
+  <section class="plants-hero section-padding">
+    <div class="container">
+      <div class="plants-hero-grid">
+        <div class="plants-hero-text">
+          <span class="eyebrow">Für euren Garten & Balkon</span>
+          <h1 class="plants-title">Bio-Jungpflanzen in Sortenvielfalt</h1>
+          <p class="plants-lead">
+            Biosain produziert nicht nur alle eigenen Jungpflanzen, sondern auch eine große Auswahl an alten und neuen samenfesten Sorten für euch.
+          </p>
+          <p class="plants-desc">
+            Glücklicherweise sind Geschmäcker und Gärten verschieden — denn die Natur ist voller Vielfalt, die für jeden Geschmack und Boden ihre Geschenke bereithält. Wir laden euch auf eine Entdeckungsreise von Geschmäckern, Farben und Formen ein, um eure Gärten und Balkone damit zu befüllen.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#sortenliste" class="btn btn-primary">
+              Sortenliste 2026 ansehen ↓
+            </a>
+            <a href="#termine" class="btn btn-secondary">
+              Markttermine entdecken
+            </a>
+          </div>
+        </div>
+
+        <div class="plants-hero-media">
+          <img 
+            src="/images/card-jungpflanzen.jpg" 
+            alt="Kräftige samenfeste Jungpflanzen im Glashaus am Wachtberg" 
+            class="plants-hero-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sortenliste Download Section -->
+  <section class="section-padding sortenliste-section" id="sortenliste">
+    <div class="container container-narrow">
+      <div class="download-card">
+        <div class="download-icon" aria-hidden="true">🌱</div>
+        <span class="eyebrow">Pflanzenkatalog</span>
+        <h2>Unsere Sorten 2026</h2>
+        <p class="download-text">
+          Eine umfassende Übersicht aller verfügbaren Jungpflanzen — alte und samenfeste Paradeiser-Raritäten, Paprika, Chili, Melanzani, Kürbisse, Zucchini, feine Küchen- und Heilkräuter sowie knackige Salate — findet ihr in unserer aktuellen Sortenliste.
+        </p>
+
+        <div class="download-action-wrap">
+          <a 
+            href="/docs/sortenliste-2026.pdf" 
+            class="btn btn-gold btn-download"
+            onclick="event.preventDefault(); alert('Die Sortenliste 2026 wird aktuell für den Druck finalisiert. Ihr könnt sie ab Anfang April hier direkt als PDF herunterladen oder vorab via E-Mail bei uns anfragen.');"
+          >
+            Sortenliste 2026 herunterladen 📥 (PDF)
+          </a>
+          <span class="file-meta">PDF • Stand Frühjahr 2026 • Kostenlos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Termine & Verkauf Section -->
+  <section class="section-padding markets-section" id="termine">
+    <div class="container">
+      <div class="text-center mb-10">
+        <span class="eyebrow">Verkaufstage</span>
+        <h2>Wo und wann gibt es unsere Jungpflanzen?</h2>
+        <p>Direkt am Hof am Wachtberg oder auf ausgewählten Spezialmärkten in Wien und Niederösterreich.</p>
+      </div>
+
+      <div class="market-cards-grid">
+        <!-- Markt 1: Wachtberg -->
+        <article class="market-card highlight-card">
+          <div class="market-badge">
+            <span class="badge badge-brand">Am Hof</span>
+          </div>
+          <span class="market-date">25. & 26. April 2026</span>
+          <span class="market-time">Jeweils 10:00 – 17:00 Uhr</span>
+          <h3 class="market-name">Jungpflanzenmarkt am Wachtberg</h3>
+          <p class="market-text">
+            Wie jedes Jahr eine riesige Auswahl an alten und neuen Gemüsesorten — im unvergleichlich schönen Wachtberger Ambiente, mit persönlicher fachlicher Beratung vor Ort.
+          </p>
+          <div class="market-location">
+            📍 <strong>Am Wachtberg 78</strong>, 3571 Gars / Thunau am Kamp
+          </div>
+          <a href="/ueber-uns#anfahrt" class="btn btn-primary btn-sm mt-4">
+            Anfahrtsbeschreibung ansehen →
+          </a>
+        </article>
+
+        <!-- Markt 2: Botanischer Garten Wien -->
+        <article class="market-card">
+          <div class="market-badge">
+            <span class="badge badge-forest">Wien</span>
+          </div>
+          <span class="market-date">17.–19. April 2026</span>
+          <span class="market-time">Fr bis So 09:30 – 18:00 Uhr</span>
+          <h3 class="market-name">Raritätenbörse Wien</h3>
+          <p class="market-text">
+            Unsere Pflanzenkinder sind auch heuer wieder bei der beliebten Raritätenbörse im Botanischen Garten der Universität Wien vertreten.
+          </p>
+          <div class="market-location">
+            📍 Botanischer Garten Wien, Rennweg 14 / Mechelgasse 2, 1030 Wien
+          </div>
+          <a href="https://botanischergarten.univie.ac.at" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm mt-4">
+            Botanischer Garten Wien ↗
+          </a>
+        </article>
+
+        <!-- Markt 3: Arche Noah -->
+        <article class="market-card">
+          <div class="market-badge">
+            <span class="badge badge-forest">Schiltern</span>
+          </div>
+          <span class="market-date">1. Mai 2026</span>
+          <span class="market-time">Freitag (Feiertag) 09:00 – 17:00 Uhr</span>
+          <h3 class="market-name">Arche Noah Jungpflanzenmarkt</h3>
+          <p class="market-text">
+            Wir freuen uns sehr, beim traditionellen Arche Noah Jungpflanzenmarkt im barocken Schaugarten in Schiltern mit dabei zu sein.
+          </p>
+          <div class="market-location">
+            📍 Arche Noah Schaugarten, Obere Straße 40, 3553 Schiltern
+          </div>
+          <a href="https://www.arche-noah.at" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm mt-4">
+            Arche Noah Website ↗
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drei Tipps fürs Einpflanzen -->
+  <section class="section-padding tips-section">
+    <div class="container container-narrow">
+      <div class="text-center mb-8">
+        <span class="eyebrow">Praxiswissen</span>
+        <h2>Drei Tipps für gesunde Pflanzen</h2>
+        <p>So gelingt der Start in euren Beeten und Pflanzkübeln optimal:</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-number">01</div>
+          <div class="tip-body">
+            <h3>Nicht zu früh ins Freie setzen</h3>
+            <p>
+              Wartet bei frostempfindlichen Fruchtgemüsearten wie Paradeisern, Paprika, Chili und Kürbis unbedingt bis nach den Eisheiligen (Mitte Mai). Späte Kälteeinbrüche können die jungen Wurzeln nachhaltig schädigen.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">02</div>
+          <div class="tip-body">
+            <h3>Den Boden lebendig vorbereiten</h3>
+            <p>
+              Verzichtet auf mineralischen Kunstdünger. Eine gut gereifte Schicht Kompost oder Pflanzenmulch fördert das mikrobiologische Bodenleben, nährt die Pflanze kontinuierlich und speichert wertvolle Feuchtigkeit.
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">03</div>
+          <div class="tip-body">
+            <h3>Bunte Mischkultur pflanzen</h3>
+            <p>
+              Mischt verschiedene Kulturen nebeneinander (z. B. Paradeiser mit Basilikum oder Ringelblumen). Echte Vielfalt schützt vor Monokultur-Schädlingen und lockt natürliche Nützlinge in euren Garten.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .plants-hero {
+    background: var(--gradient-hero);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .plants-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .plants-title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .plants-lead {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    font-weight: var(--weight-medium);
+    margin-bottom: var(--space-3);
+  }
+
+  .plants-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .plants-hero-media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    aspect-ratio: 4 / 3;
+  }
+
+  .plants-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Sortenliste section */
+  .sortenliste-section {
+    background-color: var(--color-surface);
+  }
+
+  .download-card {
+    background: var(--color-surface-sunken);
+    border: 2px solid var(--color-brand-primary);
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .download-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .download-card h2 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .download-text {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 auto var(--space-6);
+  }
+
+  .download-action-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .btn-download {
+    font-size: 1.05rem;
+    padding: 0.95rem 2.2rem;
+  }
+
+  .file-meta {
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+  }
+
+  /* Markets section */
+  .markets-section {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mb-10 {
+    margin-bottom: var(--space-10);
+  }
+
+  .market-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .market-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .market-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .highlight-card {
+    border: 2px solid var(--color-brand-primary);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF6 100%);
+  }
+
+  .market-badge {
+    margin-bottom: var(--space-3);
+  }
+
+  .market-date {
+    font-size: 1.25rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-secondary-dark);
+    display: block;
+  }
+
+  .market-time {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-3);
+    display: block;
+  }
+
+  .market-name {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .market-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+    flex: 1;
+  }
+
+  .market-location {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+    padding: var(--space-3);
+    background: var(--color-surface-sunken);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .mt-4 {
+    margin-top: auto;
+  }
+
+  /* Tips section */
+  .tips-section {
+    background-color: var(--color-surface);
+  }
+
+  .tips-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .tip-card {
+    display: flex;
+    gap: var(--space-5);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tip-number {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-primary);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+  }
+
+  .tip-body h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .tip-body p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .plants-hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .market-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tip-card {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

@@ -1,0 +1,236 @@
+---
+interface Props {
+  tallyFormId?: string; // optionnel pour charger directement le modal Tally si configuré
+}
+
+const { tallyFormId } = Astro.props;
+
+const pickupLocations = [
+  { group: "Wien (jeden Freitag)", options: [
+    "Reformhaus Wallner (1040 Wien)",
+    "Ihana (1020 Wien)",
+    "Foodcoop Stadtgut (1020 Wien)",
+    "Wins (1020 Wien)",
+    "Salon im Park (1020 Wien)",
+    "Foodcoops d'Speis / Allmunde / Vegan (1150 Wien)",
+    "Cafe Natural Winebar (1070 Wien)"
+  ]},
+  { group: "Waldviertel", options: [
+    "Ab Hof — Am Wachtberg 78, 3571 Gars / Thunau",
+    "Working Space Gars am Kamp"
+  ]},
+  { group: "Anderer Standort", options: [
+    "Interesse an neuem Standort (ab 15 Personen)"
+  ]}
+];
+---
+
+<div class="solawi-form-wrapper" id="anmelden">
+  <div class="form-card">
+    <div class="form-header">
+      <span class="eyebrow">Gemeinschaftsgetragene Landwirtschaft</span>
+      <h2 class="form-title">Interesse an einem Ernteanteil?</h2>
+      <p class="form-subtitle">
+        Meldet euch bei uns — wir antworten innerhalb weniger Tage mit allen Details zur Saison 2026.
+      </p>
+    </div>
+
+    <!-- Tally Modal Trigger if configured, else Standard Native Form with mailto / backendless support -->
+    {tallyFormId ? (
+      <div class="tally-container">
+        <button 
+          data-tally-open={tallyFormId} 
+          data-tally-layout="modal" 
+          data-tally-width="700" 
+          data-tally-emoji-text="🌿"
+          class="btn btn-primary btn-lg"
+          style="width: 100%;"
+        >
+          Formular zur Voranmeldung öffnen (Tally) →
+        </button>
+      </div>
+    ) : (
+      <form class="native-solawi-form" id="solawi-contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="vorname" class="form-label">Vorname *</label>
+            <input type="text" id="vorname" name="vorname" required class="form-control" placeholder="Maria" />
+          </div>
+          <div class="form-group">
+            <label for="nachname" class="form-label">Nachname *</label>
+            <input type="text" id="nachname" name="nachname" required class="form-control" placeholder="Muster" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="email" class="form-label">E-Mail-Adresse *</label>
+            <input type="email" id="email" name="email" required class="form-control" placeholder="maria.muster@beispiel.at" />
+          </div>
+          <div class="form-group">
+            <label for="telefon" class="form-label">Telefonnummer</label>
+            <input type="tel" id="telefon" name="telefon" class="form-control" placeholder="+43 660 1234567" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="anteile" class="form-label">Gewünschte Ernteanteile *</label>
+            <select id="anteile" name="anteile" required class="form-select">
+              <option value="1 Anteil">1 Ernteanteil (ideal für 1–2 Personen)</option>
+              <option value="2 Anteile">2 Ernteanteile (für 3–4 Personen)</option>
+              <option value="Familie">Familienanteil (großer Bedarf)</option>
+              <option value="Schnuppern">Zuerst unverbindlich informieren</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="abholort" class="form-label">Bevorzugter Abholstandort *</label>
+            <select id="abholort" name="abholort" required class="form-select">
+              {pickupLocations.map(group => (
+                <optgroup label={group.group}>
+                  {group.options.map(opt => (
+                    <option value={opt}>{opt}</option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nachricht" class="form-label">Ihre Nachricht oder Frage (optional)</label>
+          <textarea id="nachricht" name="nachricht" rows="3" class="form-textarea" placeholder="Haben Sie besondere Wünsche oder Anmerkungen?"></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" name="newsletter_optin" checked />
+            <span>
+              <strong>Ich möchte auch den Newsletter der Gärtnerei erhalten</strong> (Geschichten vom Hof, Saisonrezepte & Termine, 2–3 Mal im Monat).
+            </span>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-submit">
+            Anfrage absenden →
+          </button>
+          <span class="form-disclaimer">
+            Wir verwenden deine Daten ausschließlich zur Abwicklung deiner Anfrage.
+          </span>
+        </div>
+      </form>
+    )}
+  </div>
+</div>
+
+<script is:inline>
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const vorname = form.vorname.value;
+    const nachname = form.nachname.value;
+    const email = form.email.value;
+    const anteile = form.anteile.value;
+    const abholort = form.abholort.value;
+    const nachricht = form.nachricht.value;
+
+    const subject = encodeURIComponent(`Ernteanteil-Anfrage von ${vorname} ${nachname}`);
+    const body = encodeURIComponent(
+      `Hallo Tristan,\n\nich interessiere mich für einen Ernteanteil bei Biosain für die Saison 2026.\n\n` +
+      `Name: ${vorname} ${nachname}\n` +
+      `E-Mail: ${email}\n` +
+      `Gewünschte Anteile: ${anteile}\n` +
+      `Bevorzugter Abholort: ${abholort}\n\n` +
+      `Nachricht:\n${nachricht}\n\n` +
+      `Herzliche Grüße,\n${vorname}`
+    );
+
+    // Fallback: opens user mail client with prefilled data or shows confirmation
+    window.location.href = `mailto:office.biosain@gmail.com?subject=${subject}&body=${body}`;
+    alert('Vielen Dank! Dein E-Mail-Programm öffnet sich mit deiner vorbereiteten Anfrage an Tristan (office.biosain@gmail.com).');
+  }
+</script>
+
+<style>
+  .solawi-form-wrapper {
+    padding-top: var(--space-8);
+  }
+
+  .form-card {
+    background-color: var(--color-surface-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    padding: clamp(1.75rem, 4vw, 3.25rem);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .form-header {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .form-title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .form-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-ink-soft);
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .checkbox-group {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    background-color: var(--color-surface-sunken);
+    border-radius: var(--radius-sm);
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-6);
+  }
+
+  .btn-submit {
+    padding: 0.85rem 2.2rem;
+    font-size: 1rem;
+  }
+
+  .form-disclaimer {
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+  }
+
+  @media (max-width: 680px) {
+    .form-row-2 {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .btn-submit {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Biosain`} description={description} showBanner={false}>
+  <div class="legal-hero">
+    <div class="container container-narrow">
+      <span class="eyebrow">Rechtliches</span>
+      <h1 class="legal-title">{title}</h1>
+    </div>
+  </div>
+
+  <div class="legal-content section-padding">
+    <div class="container container-narrow">
+      <div class="legal-card">
+        <slot />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    background: var(--gradient-hero);
+    padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .legal-title {
+    margin-top: var(--space-2);
+  }
+
+  .legal-card {
+    background-color: var(--color-surface-card);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    line-height: 1.7;
+  }
+
+  .legal-card :global(h2) {
+    font-size: 1.4rem;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    color: var(--color-brand-secondary-dark);
+  }
+
+  .legal-card :global(h3) {
+    font-size: 1.15rem;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-card :global(hr) {
+    border: none;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: var(--space-6) 0;
+  }
+</style>

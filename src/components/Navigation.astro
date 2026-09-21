@@ -1,0 +1,296 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navItems = [
+  { href: "/solawi", label: "Gemüse & Solawi" },
+  { href: "/jungpflanzen", label: "Jungpflanzen" },
+  { href: "/veranstaltungen", label: "Veranstaltungen" },
+  { href: "/ueber-uns", label: "Über uns" }
+];
+---
+
+<header class="header-nav" id="main-header">
+  <div class="container nav-container">
+    <a href="/" class="brand" aria-label="Biosain - Startseite">
+      <span class="brand-text">BIO<span class="gold">SAIN</span></span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Hauptnavigation">
+      <ul class="nav-list">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <li>
+              <a 
+                href={item.href} 
+                class:list={["nav-link", { active: isActive }]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="nav-actions">
+      <a href="/solawi#anmelden" class="btn btn-primary btn-cta">
+        Ernteteiler*in werden
+      </a>
+      
+      <!-- Mobile Menu Toggle Button -->
+      <button 
+        type="button" 
+        class="mobile-toggle" 
+        id="menu-toggle-btn"
+        aria-label="Menü öffnen" 
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-menu" hidden>
+    <div class="container mobile-drawer-inner">
+      <ul class="mobile-nav-list">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <li>
+              <a 
+                href={item.href} 
+                class:list={["mobile-nav-link", { active: isActive }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+        <li class="mobile-cta-item">
+          <a href="/solawi#anmelden" class="btn btn-primary" style="width: 100%;">
+            Ernteteiler*in werden
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+      toggleBtn.classList.toggle('is-active');
+      mobileMenu.hidden = expanded;
+    });
+
+    // Close on click outside or escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.hidden) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.classList.remove('is-active');
+        mobileMenu.hidden = true;
+      }
+    });
+  }
+</script>
+
+<style>
+  .header-nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 253, 246, 0.92);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: var(--space-4);
+  }
+
+  /* Brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .brand-text {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.45rem;
+    letter-spacing: 0.04em;
+    color: var(--color-brand-secondary-dark);
+  }
+
+  .brand-text .gold {
+    color: var(--color-brand-primary);
+  }
+
+  /* Desktop Nav */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    font-weight: var(--weight-semibold);
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    padding: 0.4rem 0.2rem;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-brand-primary);
+    transition: width var(--transition-base);
+  }
+
+  .nav-link:hover {
+    color: var(--color-brand-secondary-dark);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    color: var(--color-brand-secondary-dark);
+    font-weight: var(--weight-bold);
+  }
+
+  /* Actions */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .btn-cta {
+    font-size: 0.85rem;
+    padding: 0.6rem 1.3rem;
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-ink);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .mobile-toggle .icon-close {
+    display: none;
+  }
+
+  .mobile-toggle.is-active .icon-open {
+    display: none;
+  }
+
+  .mobile-toggle.is-active .icon-close {
+    display: block;
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .mobile-drawer-inner {
+    padding: var(--space-4) 0 var(--space-6);
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: var(--weight-semibold);
+    color: var(--color-ink);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+  }
+
+  .mobile-nav-link.active {
+    color: var(--color-brand-primary-dark);
+    font-weight: var(--weight-bold);
+  }
+
+  .mobile-cta-item {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav {
+      display: none;
+    }
+    .btn-cta {
+      display: none;
+    }
+    .mobile-toggle {
+      display: flex;
+    }
+  }
+</style>

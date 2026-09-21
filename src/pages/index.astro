@@ -1,0 +1,373 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarCard from '../components/PillarCard.astro';
+import SolawiGauge from '../components/SolawiGauge.astro';
+import NewsletterBox from '../components/NewsletterBox.astro';
+---
+
+<BaseLayout title="Biosain — Vielfalts-Marktgärtnerei am Wachtberg">
+  <!-- 1.1 Hero Section -->
+  <section class="hero-section" aria-label="Willkommen bei Biosain">
+    <div class="hero-bg-media">
+      <img src="/images/hero-bg.jpg" alt="Biosain Gemüse auf lebendigem Boden am Wachtberg" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Marktgärtnerei am Wachtberg</span>
+        <h1 class="hero-title">
+          Lebendige Böden.<br />
+          <span>Samenfestes Gemüse.</span>
+        </h1>
+        <p class="hero-lead">
+          Frisches Gemüse, samenfeste Jungpflanzen und gelebte Gemeinschaft im Waldviertel. 
+          Gemeinschaftsgetragene Landwirtschaft im Einklang mit der Natur.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/solawi#anmelden" class="btn btn-gold btn-hero">
+            Ernteteiler*in werden
+          </a>
+          <a href="#newsletter" class="btn btn-outline-white btn-hero">
+            Newsletter abonnieren ↓
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#vision" class="hero-scroll-indicator" aria-label="Nach unten scrollen">
+      <span class="scroll-arrow">↓</span>
+    </a>
+  </section>
+
+  <!-- 1.2 Einführung / Unsere Vision -->
+  <section class="vision-section section-padding" id="vision">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Unsere Vision</span>
+      <h2 class="vision-heading">
+        Gesunde Landwirtschaft — für die Erde und für die Menschen.
+      </h2>
+      <p class="vision-text">
+        Seit 2011 kultivieren wir am Wachtberg lebendige Böden, vielfältiges Gemüse und echte Beziehungen zwischen denen, die anbauen, und denen, die essen.
+      </p>
+      <p class="vision-text">
+        Unser Antrieb ruht auf drei Säulen: <strong>lebendige Böden</strong> ohne Kunstdünger und Pestizide, <strong>samenfeste Sorten</strong> — geschmackvoll, vital und standortangepasst — und ein <strong>solidarisches Miteinander</strong>, das über die Marktlogik hinausgeht.
+      </p>
+      <div class="vision-action">
+        <a href="/ueber-uns" class="btn btn-secondary">
+          Mehr über unsere Geschichte & Visionen →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1.3 Die drei Säulen (Bandeau Ocre avec cartes) -->
+  <section class="pillars-section" id="angebote">
+    <div class="container">
+      <div class="section-head text-center">
+        <span class="eyebrow" style="color: var(--color-brand-secondary-dark);">Was uns antreibt</span>
+        <h2 class="pillars-title">Die drei Säulen von Biosain</h2>
+        <p class="pillars-subtitle">
+          Gemeinschaftliches Wirtschaften, Erhalt seltener Sorten und die Weitergabe unseres Wissens.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Säule 1: Solawi -->
+        <PillarCard 
+          image="/images/card-solawi.jpg"
+          alt="Frisches biologisches Gemüse der Solawi"
+          eyebrow="Ernteteilen"
+          title="Gemüse & Solawi"
+          description="Wöchentlich frisches, vielfältiges und saisonales Gemüse — direkt vom Feld, geerntet zum idealen Reifezeitpunkt. Von April bis November versorgen wir rund 90 Haushalte mit dem Besten, was der Wachtberg hervorbringt."
+          ctaText="So funktioniert es & Anmelden →"
+          ctaHref="/solawi"
+          badgeText="Saison 2026 läuft"
+        />
+
+        <!-- Säule 2: Jungpflanzen -->
+        <PillarCard 
+          image="/images/card-jungpflanzen.jpg"
+          alt="Kräftige Jungpflanzen in der Biogärtnerei"
+          eyebrow="Für euren Garten"
+          title="Bio-Jungpflanzen"
+          description="Alte und neue samenfeste Sorten — Tomaten, Paprika, Kräuter und vieles mehr. Aufgezogen am Wachtberg aus eigenem und ausgewähltem Saatgut für eure Gärten und Balkone."
+          ctaText="Sorten & Termine ansehen →"
+          ctaHref="/jungpflanzen"
+          badgeText="25.–26. April"
+        />
+
+        <!-- Säule 3: Lernen & Mitmachen -->
+        <PillarCard 
+          image="/images/card-veranstaltungen.jpg"
+          alt="Menschen beim praktischen Lernen auf dem Feld"
+          eyebrow="Workshops & Praktika"
+          title="Lernen & Mitmachen"
+          description="Workshops zu lebendigem Boden und Saatgut, Slowfood-Märkte und Kunst in der Natur. Wer tiefer einsteigen will, kann ein Praktikum oder einen Job auf dem Hof machen."
+          ctaText="Termine & Angebote entdecken →"
+          ctaHref="/veranstaltungen"
+        />
+      </div>
+
+      <!-- Solawi Gauge Teaser -->
+      <div class="pillars-gauge-wrap">
+        <SolawiGauge current={31} total={50} seasonYear={2026} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 1.4 Newsletter Box -->
+  <section class="section-padding newsletter-container-wrap">
+    <div class="container">
+      <NewsletterBox />
+    </div>
+  </section>
+
+  <!-- 1.5 Nächste Termine (Kurzübersicht) -->
+  <section class="agenda-preview-section section-padding">
+    <div class="container container-narrow">
+      <div class="agenda-head">
+        <div>
+          <span class="eyebrow">Kalender</span>
+          <h2>Nächste Termine</h2>
+        </div>
+        <a href="/veranstaltungen" class="btn btn-secondary btn-sm">
+          Alle Termine ansehen →
+        </a>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Veranstaltung</th>
+              <th>Ort</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>17.–19. April</strong></td>
+              <td>Raritätenbörse</td>
+              <td>Botanischer Garten Wien</td>
+            </tr>
+            <tr>
+              <td><strong>25.–26. April</strong></td>
+              <td><strong>Jungpflanzenmarkt am Wachtberg</strong></td>
+              <td>Wachtberg, Gars am Kamp</td>
+            </tr>
+            <tr>
+              <td><strong>1. Mai</strong></td>
+              <td>Jungpflanzenmarkt Arche Noah</td>
+              <td>Arche Noah, Schiltern</td>
+            </tr>
+            <tr>
+              <td><strong>26. September</strong></td>
+              <td>Slowfood-Markt der Erde</td>
+              <td>Hauptplatz, Gars am Kamp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero-section {
+    position: relative;
+    height: min(88vh, 740px);
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #112015;
+    color: #FFFFFF;
+  }
+
+  .hero-bg-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 24, 17, 0.45) 0%,
+      rgba(15, 24, 17, 0.65) 60%,
+      rgba(15, 24, 17, 0.85) 100%
+    );
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-brand-primary-light);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-title {
+    color: #FFFFFF;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.12;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-title span {
+    color: var(--color-brand-primary-light);
+  }
+
+  .hero-lead {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    color: #F0EAD6;
+    line-height: 1.55;
+    margin-bottom: var(--space-8);
+    max-width: 640px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .btn-hero {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: #F0EAD6;
+    font-size: 1.4rem;
+    text-decoration: none;
+    animation: bounce 2.2s infinite ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
+  }
+
+  /* Vision Section */
+  .vision-section {
+    background-color: var(--color-surface);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .vision-heading {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-5);
+    line-height: 1.25;
+  }
+
+  .vision-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+  }
+
+  .vision-action {
+    margin-top: var(--space-6);
+  }
+
+  /* Pillars Section with Gold Band */
+  .pillars-section {
+    background-color: var(--color-brand-primary);
+    padding: clamp(4rem, 8vw, 6.5rem) 0;
+    position: relative;
+  }
+
+  .section-head {
+    max-width: 680px;
+    margin: 0 auto var(--space-10);
+  }
+
+  .pillars-title {
+    color: var(--color-ink);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .pillars-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-ink-soft);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .pillars-gauge-wrap {
+    margin-top: var(--space-10);
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Newsletter Wrap */
+  .newsletter-container-wrap {
+    background-color: var(--color-surface);
+  }
+
+  /* Agenda Preview */
+  .agenda-preview-section {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .agenda-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .agenda-head h2 {
+    margin-top: var(--space-1);
+  }
+
+  @media (max-width: 960px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+  }
+</style>

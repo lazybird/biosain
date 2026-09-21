@@ -1,0 +1,124 @@
+---
+interface Props {
+  current?: number;
+  total?: number;
+  seasonYear?: number;
+}
+
+const {
+  current = 31,
+  total = 50,
+  seasonYear = 2026
+} = Astro.props;
+
+const percentage = Math.round((current / total) * 100);
+---
+
+<div class="solawi-gauge">
+  <div class="gauge-header">
+    <div class="gauge-title-group">
+      <span class="badge badge-brand">Saison {seasonYear}</span>
+      <strong class="gauge-title">Ernteteilen — Anmeldung läuft</strong>
+    </div>
+    <div class="gauge-count">
+      <span class="count-bold">{current}</span> / {total} Anteile
+    </div>
+  </div>
+
+  <div class="gauge-track" role="progressbar" aria-valuenow={percentage} aria-valuemin="0" aria-valuemax="100" aria-label={`Ernteanteile Vergabe: ${percentage}%`}>
+    <div class="gauge-bar" style={`width: ${percentage}%;`}></div>
+  </div>
+
+  <div class="gauge-footer">
+    <p class="gauge-note">
+      Noch <strong>{total - current} Ernteanteile</strong> für die kommende Saison verfügbar.
+    </p>
+    <a href="/solawi#anmelden" class="btn btn-primary btn-sm">
+      Jetzt Platz sichern →
+    </a>
+  </div>
+</div>
+
+<style>
+  .solawi-gauge {
+    background: var(--color-surface-sunken);
+    border: 1px solid rgba(27, 35, 24, 0.1);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.5rem, 4vw, 2.25rem);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gauge-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .gauge-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .gauge-title {
+    font-size: var(--text-base);
+    color: var(--color-ink);
+  }
+
+  .gauge-count {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .count-bold {
+    font-size: 1.15rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-secondary-dark);
+  }
+
+  .gauge-track {
+    height: 12px;
+    background-color: rgba(27, 35, 24, 0.12);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--space-4);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  .gauge-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+    border-radius: var(--radius-full);
+    transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .gauge-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .gauge-note {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 600px) {
+    .gauge-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+interface Props {
+  variant?: 'card' | 'section';
+}
+
+const { variant = 'section' } = Astro.props;
+---
+
+<section class:list={["newsletter-block", { "newsletter-standalone": variant === 'section' }]} id="newsletter">
+  <div class="newsletter-card">
+    <div class="newsletter-decor" aria-hidden="true">🌱</div>
+    
+    <div class="newsletter-content">
+      <span class="eyebrow">Auf dem Laufenden bleiben</span>
+      <h2 class="newsletter-title">Neuigkeiten vom Wachtberg</h2>
+      <p class="newsletter-text">
+        2–3 Mal im Monat: Geschichten aus der Gärtnerei, Saisonrezepte, Markttermine und Ankündigungen zu Workshops — direkt in euer Postfach.
+      </p>
+
+      <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Vielen Dank für deine Anmeldung! Du erhältst in Kürze eine Bestätigungs-E-Mail.');">
+        <div class="input-wrap">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Deine E-Mail-Adresse" 
+            required 
+            class="newsletter-input" 
+            aria-label="E-Mail-Adresse für den Newsletter"
+          />
+          <button type="submit" class="btn btn-gold btn-newsletter">
+            Anmelden
+          </button>
+        </div>
+        <p class="newsletter-disclaimer">
+          🔒 Kein Spam. Ihr könnt euch jederzeit mit einem einzigen Klick wieder abmelden.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter-block {
+    position: relative;
+  }
+
+  .newsletter-standalone {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .newsletter-card {
+    background: linear-gradient(135deg, #2F4A34 0%, #1E3324 100%);
+    color: #FFFDF6;
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(202, 174, 0, 0.25);
+  }
+
+  .newsletter-decor {
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-size: clamp(8rem, 15vw, 12rem);
+    opacity: 0.08;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .newsletter-content {
+    max-width: 640px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .newsletter-card .eyebrow {
+    color: var(--color-brand-primary-light);
+  }
+
+  .newsletter-title {
+    color: #FFFFFF;
+    margin-bottom: var(--space-3);
+  }
+
+  .newsletter-text {
+    color: #D6D0BC;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .newsletter-form {
+    width: 100%;
+  }
+
+  .input-wrap {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 253, 246, 0.95);
+    color: var(--color-ink);
+    transition: all var(--transition-fast);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    background: #FFFFFF;
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 3px rgba(202, 174, 0, 0.3);
+  }
+
+  .btn-newsletter {
+    padding: 0.85rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .newsletter-disclaimer {
+    font-size: var(--text-xs);
+    color: #A8A28E;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .input-wrap {
+      flex-direction: column;
+    }
+
+    .btn-newsletter {
+      width: 100%;
+    }
+  }
+</style>

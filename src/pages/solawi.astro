@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SolawiForm from '../components/SolawiForm.astro';
+import SolawiGauge from '../components/SolawiGauge.astro';
+---
+
+<BaseLayout 
+  title="Solawi — Gemeinschaftsgetragene Landwirtschaft | Biosain"
+  description="Wie die Solawi bei Biosain funktioniert: Wöchentlich frisches, samenfestes Bio-Gemüse direkt vom Wachtberg nach Wien und ins Waldviertel. Jetzt Ernteanteil für 2026 sichern."
+>
+  <!-- Hero / Header -->
+  <section class="solawi-hero section-padding">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Gemeinschaftsgetragene Landwirtschaft</span>
+      <h1 class="solawi-title">Solawi — so funktioniert es</h1>
+      <p class="solawi-lead">
+        Eine gemeinschaftsgetragene Landwirtschaft ermöglicht Verbraucher*innen und Produzent*innen, außerhalb eines marktwirtschaftlichen Systems — das zumeist weder fair, gesund noch ökologisch tragbar ist — neu in Beziehung zu treten.
+      </p>
+      <div class="hero-cta-wrap">
+        <a href="#anmelden" class="btn btn-primary">
+          Für einen Ernteanteil anmelden ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jauge Quota Solawi -->
+  <section class="container container-narrow solawi-gauge-section">
+    <SolawiGauge current={31} total={50} seasonYear={2026} />
+  </section>
+
+  <!-- Double Colonne : Was es euch bringt & Was es uns ermöglicht -->
+  <section class="section-padding impact-section">
+    <div class="container">
+      <div class="impact-grid">
+        <!-- Spalte 1: Für euch -->
+        <div class="impact-col">
+          <div class="col-badge">
+            <span class="badge badge-brand">Für euch</span>
+          </div>
+          <h2 class="col-title">Was euch ein Ernteanteil bringt</h2>
+          <ul class="benefit-list">
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Frisches, vielfältiges Gemüse</strong>
+                <p>Wöchentlich, regional und saisonal, geerntet zum idealen physiologischen Reifezeitpunkt.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Vergessene Geschmäcker</strong>
+                <p>(Wieder)entdecken seltener Aromen, samenfester Sorten und botanischer Kostbarkeiten.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Nähe und echter Bezug</strong>
+                <p>Zu den Menschen, den Jahreszeiten und dem Wachtberger Boden, auf dem euer Gemüse wächst.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Höchste vitale Qualität</strong>
+                <p>Schonender, geschmacks- und vitalitätsorientierter Anbau in lebendigen Böden ohne Pestizide.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Sinnvolle Unterstützung</strong>
+                <p>Kleinbäuerliche, regionale Biolandwirtschaft aktiv fördern und für die Zukunft sichern.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon">✓</div>
+              <div>
+                <strong>Neue Kochideen</strong>
+                <p>Inspiration in der Küche durch die bunte, wechselnde Vielfalt der wöchentlichen Ernteanteile.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Spalte 2: Für die Farm -->
+        <div class="impact-col impact-col-farm">
+          <div class="col-badge">
+            <span class="badge badge-forest">Für den Hof</span>
+          </div>
+          <h2 class="col-title">Was ihr damit ermöglicht</h2>
+          <ul class="benefit-list">
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Ökologisch nachhaltig arbeiten</strong>
+                <p>Vielfältiges, geschmackvolles und samenfestes Gemüse ohne Kunstdünger und Monokulturen anbauen.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Vielfalt statt Ertragslogik</strong>
+                <p>Ein Hoforganismus, in dem auch seltene und anspruchsvolle Kulturen ihren geschützten Platz haben.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Faire Entlohnung</strong>
+                <p>Ein gesundes, faires und planbares Arbeitsumfeld für alle Menschen auf der Gärtnerei.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Verlässliche Planung</strong>
+                <p>Sinnvolle und zukunftssichere Planung der Anbausaison und der schrittweisen Betriebsentwicklung.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Direkte Partnerschaft</strong>
+                <p>Ein persönlicher Austausch mit den Menschen, die unsere Ernte tagtäglich essen und genießen.</p>
+              </div>
+            </li>
+            <li>
+              <div class="bullet-icon bullet-icon-farm">🌱</div>
+              <div>
+                <strong>Gemüse in Bestform</strong>
+                <p>Keine Überproduktion für Supermarktregale, sondern exakt abgestimmte Erntefrische.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Das Wichtigste auf einen Blick -->
+  <section class="section-padding overview-section">
+    <div class="container container-narrow">
+      <div class="text-center mb-8">
+        <span class="eyebrow">Fakten & Details</span>
+        <h2>Auf einen Blick</h2>
+        <p>Alle organisatorischen Rahmenbedingungen für die Saison 2026.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <tbody>
+            <tr>
+              <th style="width: 32%;">Saison</th>
+              <td><strong>Anfang April bis Ende November 2026</strong></td>
+            </tr>
+            <tr>
+              <th>Lieferrhythmus</th>
+              <td>Wöchentlich freitags (33 Lieferwochen, insgesamt 34 Ernteanteile)</td>
+            </tr>
+            <tr>
+              <th>Saisonbeitrag</th>
+              <td>
+                <span class="price-highlight">1.070 €</span>
+                <span class="price-note">(entspricht ca. 31,40 € pro reichhaltigem Wochenanteil)</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Abholung Wien<br><small style="font-weight: normal; color: var(--color-ink-soft);">(jeden Freitag)</small></th>
+              <td>
+                <ul class="pickup-list">
+                  <li><strong>1040 Wien:</strong> Reformhaus Wallner</li>
+                  <li><strong>1020 Wien:</strong> Ihana, Foodcoop Stadtgut, Wins, Salon im Park</li>
+                  <li><strong>1150 Wien:</strong> Foodcoops d'Speis, Allmunde, Vegan Foodcoop</li>
+                  <li><strong>1070 Wien:</strong> Cafe Natural Winebar</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Abholung Waldviertel</th>
+              <td>
+                <strong>Ab Hof</strong> (Am Wachtberg 78, 3571 Gars/Thunau) und <strong>Working Space Gars am Kamp</strong>.
+              </td>
+            </tr>
+            <tr>
+              <th>Neuer Standort?</th>
+              <td>Ab 15 Ernteteiler*innen können wir gerne eine neue Verteilstelle in Wien einrichten. Sprecht uns an!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="section-padding faq-section">
+    <div class="container container-narrow">
+      <div class="text-center mb-8">
+        <span class="eyebrow">Transparenz</span>
+        <h2>Häufige Fragen (FAQ)</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>Was ist in einem Ernteanteil enthalten?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Ein Ernteanteil enthält eine bunte, reichhaltige Auswahl an saisonalem Gemüse — über 30 verschiedene Kulturen im Laufe des Jahres. Im Frühling startet die Saison mit frischen Salaten, Kräutern, Radieschen und Spinat. Im Sommer folgen saftige Paradeiser, Paprika, Zucchini, Gurken und Bohnen. Im Herbst und Frühwinter runden Kürbisse, Wurzelgemüse, Kohlsorten und Wintersalate das Paket ab.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Wie läuft die wöchentliche Abholung ab?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Jeden Freitag stehen eure frischen Ernteanteile an den jeweiligen Wiener oder Waldviertler Abholstandorten zur Selbstabholung bereit. Solltet ihr im Urlaub oder verhindert sein, kann jederzeit eine befreundete Person, Nachbar*in oder Familie euren Anteil für euch abholen.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Wie kann ich mich verbindlich anmelden?</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>
+              Füllt einfach das unverbindliche Voranmeldeformular unten aus oder schreibt uns direkt an <strong>office.biosain@gmail.com</strong> mit dem Betreff „Ernteanteil 2026". Wir melden uns innerhalb von wenigen Tagen mit der Vereinbarung und allen Details bei euch.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaire d'inscription / contact -->
+  <section class="section-padding form-section" id="anmelden">
+    <div class="container">
+      <SolawiForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .solawi-hero {
+    background: var(--gradient-hero);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .solawi-title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .solawi-lead {
+    font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-cta-wrap {
+    margin-top: var(--space-4);
+  }
+
+  .solawi-gauge-section {
+    margin-top: -2rem;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Impact section */
+  .impact-section {
+    background-color: var(--color-surface);
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .impact-col {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.75rem, 4vw, 3rem);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .col-title {
+    font-size: 1.5rem;
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .benefit-list li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .bullet-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface-sunken);
+    color: var(--color-brand-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .bullet-icon-farm {
+    background-color: var(--badge-accent-bg);
+    color: var(--color-brand-secondary);
+    font-size: 0.85rem;
+  }
+
+  .benefit-list strong {
+    display: block;
+    color: var(--color-ink);
+    margin-bottom: 2px;
+  }
+
+  .benefit-list p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Overview section */
+  .overview-section {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mb-8 {
+    margin-bottom: var(--space-8);
+  }
+
+  .price-highlight {
+    font-size: 1.3rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-brand-secondary-dark);
+    margin-right: var(--space-2);
+  }
+
+  .price-note {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+  }
+
+  .pickup-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+  }
+
+  /* FAQ */
+  .faq-section {
+    background-color: var(--color-surface);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq-item {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-brand-primary);
+  }
+
+  .faq-question {
+    padding: var(--space-4) var(--space-5);
+    font-family: var(--font-sans);
+    font-weight: var(--weight-bold);
+    font-size: 1.05rem;
+    color: var(--color-ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    font-size: 1.3rem;
+    color: var(--color-brand-secondary);
+    transition: transform var(--transition-fast);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-5) var(--space-5);
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Form section */
+  .form-section {
+    background: var(--color-surface-sunken);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 860px) {
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
