@@ -75,47 +75,47 @@ const navItems = [
       </button>
     </div>
   </div>
+</header>
 
-  <!-- Mobile Drawer Overlay -->
-  <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+<!-- Mobile Drawer Overlay (sibling au header, pas enfant — fix position:fixed) -->
+<div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-drawer" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation mobile">
-    <div class="mobile-drawer-inner">
-      <nav aria-label="Mobile Hauptnavigation">
-        <ul class="mobile-nav-list">
-          {navItems.map((item) => {
-            const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
-            return (
-              <li>
-                <a 
-                  href={item.href} 
-                  class:list={["mobile-nav-link", { active: isActive }]}
-                >
-                  {item.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation mobile">
+  <div class="mobile-drawer-inner">
+    <nav aria-label="Mobile Hauptnavigation">
+      <ul class="mobile-nav-list">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+          return (
+            <li>
+              <a 
+                href={item.href} 
+                class:list={["mobile-nav-link", { active: isActive }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
 
-      <div class="mobile-drawer-actions">
-        <a href="/solawi#anmelden" class="btn btn-primary mobile-cta-btn">
-          🌿 Ernteteiler*in werden
-        </a>
-        <a 
-          href="https://www.leetchi.com/fr/c/biosain-1768159" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="btn btn-outline mobile-donate-btn"
-        >
-          ❤️ Spenden / Unterstützen ↗
-        </a>
-      </div>
+    <div class="mobile-drawer-actions">
+      <a href="/solawi#anmelden" class="btn btn-primary mobile-cta-btn">
+        🌿 Ernteteiler*in werden
+      </a>
+      <a 
+        href="https://www.leetchi.com/fr/c/biosain-1768159" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn btn-outline mobile-donate-btn"
+      >
+        ❤️ Spenden / Unterstützen ↗
+      </a>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   const toggleBtn = document.getElementById('menu-toggle-btn');
