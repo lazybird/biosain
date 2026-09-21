@@ -16,7 +16,7 @@ const navItems = [
 <header class="header-nav" id="main-header">
   <div class="container nav-container">
     <a href="/" class="brand" aria-label="Biosain - Startseite">
-      <span class="brand-text">BIO<span class="gold">SAIN</span></span>
+      <img src="/images/logo-biosain.png" alt="Biosain" class="brand-logo" width="168" height="38" />
     </a>
 
     <!-- Desktop Navigation -->
@@ -41,6 +41,15 @@ const navItems = [
 
     <!-- Header Actions -->
     <div class="nav-actions">
+      <a 
+        href="https://www.leetchi.com/fr/c/biosain-1768159" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="nav-donate-link"
+        title="Solidarität & Projektspende für Nakôbio"
+      >
+        <span class="heart-icon">❤️</span> Spenden
+      </a>
       <a href="/solawi#anmelden" class="btn btn-primary btn-cta">
         Ernteteiler*in werden
       </a>
@@ -87,6 +96,17 @@ const navItems = [
         <li class="mobile-cta-item">
           <a href="/solawi#anmelden" class="btn btn-primary" style="width: 100%;">
             Ernteteiler*in werden
+          </a>
+        </li>
+        <li class="mobile-donate-item">
+          <a 
+            href="https://www.leetchi.com/fr/c/biosain-1768159" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn btn-outline" 
+            style="width: 100%; border-color: var(--color-brand-primary); color: var(--color-ink);"
+          >
+            ❤️ Bildungsarbeit unterstützen / Spenden ↗
           </a>
         </li>
       </ul>
@@ -143,6 +163,18 @@ const navItems = [
     align-items: center;
     text-decoration: none;
     line-height: 1;
+  }
+
+  .brand-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform var(--transition-fast);
+  }
+
+  .brand:hover .brand-logo {
+    transform: scale(1.02);
   }
 
   .brand-text {
@@ -219,15 +251,52 @@ const navItems = [
     padding: 0.6rem 1.3rem;
   }
 
+  .nav-donate-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    padding: 0.45rem 0.8rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    transition: all var(--transition-fast);
+  }
+
+  .nav-donate-link:hover {
+    color: #9333ea;
+    border-color: #f43f5e;
+    background-color: #fff1f2;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-donate-link .heart-icon {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
   /* Mobile Toggle */
   .mobile-toggle {
     display: none;
     background: none;
-    border: none;
+    border: 1px solid var(--color-border);
     color: var(--color-ink);
     cursor: pointer;
-    padding: 8px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-sm);
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-toggle:hover {
+    background-color: var(--color-surface-sunken);
   }
 
   .mobile-toggle .icon-close {
@@ -257,23 +326,33 @@ const navItems = [
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
     margin: 0;
     padding: 0;
   }
 
   .mobile-nav-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
     font-size: 1.1rem;
     font-weight: var(--weight-semibold);
     color: var(--color-ink);
     text-decoration: none;
-    padding: var(--space-2) 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: var(--color-surface-sunken);
   }
 
   .mobile-nav-link.active {
     color: var(--color-brand-primary-dark);
     font-weight: var(--weight-bold);
+    background-color: var(--color-surface-sunken);
   }
 
   .mobile-cta-item {
@@ -281,6 +360,7 @@ const navItems = [
     padding-top: var(--space-3);
     border-top: 1px solid var(--color-border);
   }
+
 
   @media (max-width: 900px) {
     .desktop-nav {

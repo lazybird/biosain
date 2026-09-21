@@ -113,13 +113,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="partner-box">
             <div class="partner-icon">🌍</div>
             <div>
-              <h4>Kooperation mit Nakôbio & Dalaseeds</h4>
+              <h4>Kooperation mit Nakôbio</h4>
               <p>
-                Deshalb engagieren wir uns gemeinsam mit den Vereinen <strong>Nakôbio</strong> und <strong>Dalaseeds</strong> an praxisorientierten Ausbildungsprogrammen für bio-intensiven Gemüsebau und Saatgutvermehrung in lebendigen Böden in Mali und Westafrika.
+                Deshalb engagieren wir uns gemeinsam mit dem gemeinnützigen Verein <strong>Nakôbio</strong> an praxisorientierten Ausbildungsprogrammen für bio-intensiven Gemüsebau und Saatgutvermehrung in lebendigen Böden in Mali und Westafrika.
               </p>
-              <a href="https://nako.bio" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                Mehr über Nakôbio erfahren ↗
-              </a>
+              <div class="partner-actions">
+                <a href="https://nako.bio" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                  Mehr über Nakôbio erfahren ↗
+                </a>
+                <a href="https://www.leetchi.com/fr/c/biosain-1768159" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  ❤️ Projekt mit einer Spende unterstützen ↗
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -376,7 +381,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .partner-box p {
     font-size: 0.92rem;
     line-height: 1.6;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .partner-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
   }
 
   /* Wachtberg */

@@ -119,4 +119,14 @@
   --gradient-brand: linear-gradient(135deg, #968100 0%, #CAAE00 100%);
   --gradient-accent: linear-gradient(135deg, #1E3324 0%, #2F4A34 100%);
   --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FAFAF4 100%);
+
+  /* ------------------------------------------------------------------------
+     Ergonomie Mobile & Cibles Tactiles
+     ------------------------------------------------------------------------ */
+  --touch-target-min: 44px;
+  --touch-target-comfort: 48px;
+  --touch-gap-min: 8px;
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-top: env(safe-area-inset-top, 0px);
 }
+

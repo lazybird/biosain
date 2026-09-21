@@ -6,26 +6,24 @@ import NewsletterBox from '../components/NewsletterBox.astro';
 ---
 
 <BaseLayout title="Biosain — Vielfalts-Marktgärtnerei am Wachtberg">
-  <!-- 1.1 Hero Section -->
+  <!-- 1.1 Hero Section AVEC FOND PARALLAXE -->
   <section class="hero-section" aria-label="Willkommen bei Biosain">
-    <div class="hero-bg-media">
-      <img src="/images/hero-bg.jpg" alt="Biosain Gemüse auf lebendigem Boden am Wachtberg" class="hero-bg-img" />
-      <div class="hero-overlay"></div>
-    </div>
+    <div class="hero-bg-parallax" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
 
     <div class="container hero-container">
       <div class="hero-content">
-        <span class="hero-eyebrow">Marktgärtnerei am Wachtberg</span>
-        <h1 class="hero-title">
+        <span class="hero-eyebrow scroll-reveal">Marktgärtnerei am Wachtberg</span>
+        <h1 class="hero-title scroll-reveal delay-1">
           Lebendige Böden.<br />
           <span>Samenfestes Gemüse.</span>
         </h1>
-        <p class="hero-lead">
+        <p class="hero-lead scroll-reveal delay-2">
           Frisches Gemüse, samenfeste Jungpflanzen und gelebte Gemeinschaft im Waldviertel. 
           Gemeinschaftsgetragene Landwirtschaft im Einklang mit der Natur.
         </p>
 
-        <div class="hero-actions">
+        <div class="hero-actions scroll-reveal delay-3">
           <a href="/solawi#anmelden" class="btn btn-gold btn-hero">
             Ernteteiler*in werden
           </a>
@@ -44,17 +42,17 @@ import NewsletterBox from '../components/NewsletterBox.astro';
   <!-- 1.2 Einführung / Unsere Vision -->
   <section class="vision-section section-padding" id="vision">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">Unsere Vision</span>
-      <h2 class="vision-heading">
+      <span class="eyebrow scroll-reveal">Unsere Vision</span>
+      <h2 class="vision-heading scroll-reveal delay-1">
         Gesunde Landwirtschaft — für die Erde und für die Menschen.
       </h2>
-      <p class="vision-text">
+      <p class="vision-text scroll-reveal delay-2">
         Seit 2011 kultivieren wir am Wachtberg lebendige Böden, vielfältiges Gemüse und echte Beziehungen zwischen denen, die anbauen, und denen, die essen.
       </p>
-      <p class="vision-text">
+      <p class="vision-text scroll-reveal delay-3">
         Unser Antrieb ruht auf drei Säulen: <strong>lebendige Böden</strong> ohne Kunstdünger und Pestizide, <strong>samenfeste Sorten</strong> — geschmackvoll, vital und standortangepasst — und ein <strong>solidarisches Miteinander</strong>, das über die Marktlogik hinausgeht.
       </p>
-      <div class="vision-action">
+      <div class="vision-action scroll-reveal delay-4">
         <a href="/ueber-uns" class="btn btn-secondary">
           Mehr über unsere Geschichte & Visionen →
         </a>
@@ -65,7 +63,7 @@ import NewsletterBox from '../components/NewsletterBox.astro';
   <!-- 1.3 Die drei Säulen (Bandeau Ocre avec cartes) -->
   <section class="pillars-section" id="angebote">
     <div class="container">
-      <div class="section-head text-center">
+      <div class="section-head text-center scroll-reveal">
         <span class="eyebrow" style="color: var(--color-brand-secondary-dark);">Was uns antreibt</span>
         <h2 class="pillars-title">Die drei Säulen von Biosain</h2>
         <p class="pillars-subtitle">
@@ -75,50 +73,56 @@ import NewsletterBox from '../components/NewsletterBox.astro';
 
       <div class="card-grid">
         <!-- Säule 1: Solawi -->
-        <PillarCard 
-          image="/images/card-solawi.jpg"
-          alt="Frisches biologisches Gemüse der Solawi"
-          eyebrow="Ernteteilen"
-          title="Gemüse & Solawi"
-          description="Wöchentlich frisches, vielfältiges und saisonales Gemüse — direkt vom Feld, geerntet zum idealen Reifezeitpunkt. Von April bis November versorgen wir rund 90 Haushalte mit dem Besten, was der Wachtberg hervorbringt."
-          ctaText="So funktioniert es & Anmelden →"
-          ctaHref="/solawi"
-          badgeText="Saison 2026 läuft"
-        />
+        <div class="scroll-reveal delay-1">
+          <PillarCard 
+            image="/images/card-solawi.jpg"
+            alt="Frisches biologisches Gemüse der Solawi"
+            eyebrow="Ernteteilen"
+            title="Gemüse & Solawi"
+            description="Wöchentlich frisches, vielfältiges und saisonales Gemüse — direkt vom Feld, geerntet zum idealen Reifezeitpunkt. Von April bis November versorgen wir rund 90 Haushalte mit dem Besten, was der Wachtberg hervorbringt."
+            ctaText="So funktioniert es & Anmelden →"
+            ctaHref="/solawi"
+            badgeText="Saison 2026 läuft"
+          />
+        </div>
 
         <!-- Säule 2: Jungpflanzen -->
-        <PillarCard 
-          image="/images/card-jungpflanzen.jpg"
-          alt="Kräftige Jungpflanzen in der Biogärtnerei"
-          eyebrow="Für euren Garten"
-          title="Bio-Jungpflanzen"
-          description="Alte und neue samenfeste Sorten — Tomaten, Paprika, Kräuter und vieles mehr. Aufgezogen am Wachtberg aus eigenem und ausgewähltem Saatgut für eure Gärten und Balkone."
-          ctaText="Sorten & Termine ansehen →"
-          ctaHref="/jungpflanzen"
-          badgeText="25.–26. April"
-        />
+        <div class="scroll-reveal delay-2">
+          <PillarCard 
+            image="/images/card-jungpflanzen.jpg"
+            alt="Kräftige Jungpflanzen in der Biogärtnerei"
+            eyebrow="Für euren Garten"
+            title="Bio-Jungpflanzen"
+            description="Alte und neue samenfeste Sorten — Tomaten, Paprika, Kräuter und vieles mehr. Aufgezogen am Wachtberg aus eigenem und ausgewähltem Saatgut für eure Gärten und Balkone."
+            ctaText="Sorten & Termine ansehen →"
+            ctaHref="/jungpflanzen"
+            badgeText="25.–26. April"
+          />
+        </div>
 
         <!-- Säule 3: Lernen & Mitmachen -->
-        <PillarCard 
-          image="/images/card-veranstaltungen.jpg"
-          alt="Menschen beim praktischen Lernen auf dem Feld"
-          eyebrow="Workshops & Praktika"
-          title="Lernen & Mitmachen"
-          description="Workshops zu lebendigem Boden und Saatgut, Slowfood-Märkte und Kunst in der Natur. Wer tiefer einsteigen will, kann ein Praktikum oder einen Job auf dem Hof machen."
-          ctaText="Termine & Angebote entdecken →"
-          ctaHref="/veranstaltungen"
-        />
+        <div class="scroll-reveal delay-3">
+          <PillarCard 
+            image="/images/card-veranstaltungen.jpg"
+            alt="Menschen beim praktischen Lernen auf dem Feld"
+            eyebrow="Workshops & Praktika"
+            title="Lernen & Mitmachen"
+            description="Workshops zu lebendigem Boden und Saatgut, Slowfood-Märkte und Kunst in der Natur. Wer tiefer einsteigen will, kann ein Praktikum oder einen Job auf dem Hof machen."
+            ctaText="Termine & Angebote entdecken →"
+            ctaHref="/veranstaltungen"
+          />
+        </div>
       </div>
 
       <!-- Solawi Gauge Teaser -->
-      <div class="pillars-gauge-wrap">
+      <div class="pillars-gauge-wrap scroll-reveal delay-4">
         <SolawiGauge current={31} total={50} seasonYear={2026} />
       </div>
     </div>
   </section>
 
   <!-- 1.4 Newsletter Box -->
-  <section class="section-padding newsletter-container-wrap">
+  <section class="section-padding newsletter-container-wrap scroll-reveal">
     <div class="container">
       <NewsletterBox />
     </div>
@@ -187,29 +191,38 @@ import NewsletterBox from '../components/NewsletterBox.astro';
     color: #FFFFFF;
   }
 
-  .hero-bg-media {
+  .hero-bg-parallax {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-  }
-
-  .hero-bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    background-image: url('/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: 65% center;
+    background-attachment: fixed;
+    z-index: 0;
+    filter: saturate(1.08) brightness(0.95);
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(15, 24, 17, 0.45) 0%,
-      rgba(15, 24, 17, 0.65) 60%,
-      rgba(15, 24, 17, 0.85) 100%
-    );
+    background: 
+      /* Vignette radiale gauche pour protéger le texte */
+      radial-gradient(
+        ellipse 80% 90% at 20% 50%,
+        rgba(17, 32, 21, 0.88) 0%,
+        rgba(17, 32, 21, 0.65) 55%,
+        rgba(17, 32, 21, 0.35) 100%
+      ),
+      /* Dégradé vertical pour fondu haut et bas */
+      linear-gradient(
+        180deg,
+        rgba(17, 32, 21, 0.60) 0%,
+        rgba(17, 32, 21, 0.25) 40%,
+        rgba(17, 32, 21, 0.70) 80%,
+        rgba(17, 32, 21, 0.95) 100%
+      );
   }
 
   .hero-container {
@@ -218,7 +231,7 @@ import NewsletterBox from '../components/NewsletterBox.astro';
   }
 
   .hero-content {
-    max-width: 780px;
+    max-width: 800px;
   }
 
   .hero-eyebrow {
@@ -227,7 +240,8 @@ import NewsletterBox from '../components/NewsletterBox.astro';
     font-weight: var(--weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: var(--color-brand-primary-light);
+    color: #F8E264;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     margin-bottom: var(--space-3);
   }
 
@@ -236,18 +250,21 @@ import NewsletterBox from '../components/NewsletterBox.astro';
     font-size: clamp(2.4rem, 6vw, 4.2rem);
     line-height: 1.12;
     margin-bottom: var(--space-4);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
   }
 
   .hero-title span {
-    color: var(--color-brand-primary-light);
+    color: #F2D542;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
   }
 
   .hero-lead {
     font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-    color: #F0EAD6;
-    line-height: 1.55;
+    color: #F7F3E7;
+    line-height: 1.6;
     margin-bottom: var(--space-8);
     max-width: 640px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   }
 
   .hero-actions {
