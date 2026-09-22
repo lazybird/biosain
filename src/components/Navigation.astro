@@ -118,39 +118,42 @@ const navItems = [
 </div>
 
 <script>
-  const toggleBtn = document.getElementById('menu-toggle-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('mobile-overlay');
-  const header = document.getElementById('main-header');
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
 
-  function openMenu() {
-    toggleBtn.setAttribute('aria-expanded', 'true');
-    toggleBtn.classList.add('is-active');
-    mobileMenu.classList.add('is-open');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    overlay.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-  }
+    if (!toggleBtn || !mobileMenu || !overlay) return;
 
-  function closeMenu() {
-    toggleBtn.setAttribute('aria-expanded', 'false');
-    toggleBtn.classList.remove('is-active');
-    mobileMenu.classList.remove('is-open');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    overlay.classList.remove('is-visible');
-    document.body.style.overflow = '';
-  }
+    // Prevent duplicate event handlers
+    if (toggleBtn.dataset.menuInitialized === 'true') return;
+    toggleBtn.dataset.menuInitialized = 'true';
 
-  if (toggleBtn && mobileMenu && overlay) {
+    function openMenu() {
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      toggleBtn.classList.add('is-active');
+      mobileMenu.classList.add('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('is-visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.classList.remove('is-active');
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      overlay.classList.remove('is-visible');
+      document.body.style.overflow = '';
+    }
+
     toggleBtn.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.contains('is-open');
       isOpen ? closeMenu() : openMenu();
     });
 
-    // Fermeture au clic sur l'overlay
     overlay.addEventListener('click', closeMenu);
 
-    // Fermeture sur Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
         closeMenu();
@@ -158,11 +161,17 @@ const navItems = [
       }
     });
 
-    // Fermeture sur clic d'un lien du menu
     mobileMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>
 
 <style>
@@ -347,13 +356,15 @@ const navItems = [
     background: rgba(10, 20, 12, 0.55);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    z-index: 35;
+    z-index: 55;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.28s ease;
   }
 
   .mobile-overlay.is-visible {
     opacity: 1;
+    pointer-events: auto;
   }
 
   /* Mobile Drawer */
@@ -362,7 +373,7 @@ const navItems = [
     top: 0;
     left: 0;
     right: 0;
-    z-index: 36;
+    z-index: 60;
     background: var(--color-surface);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -371,11 +382,13 @@ const navItems = [
     transform: translateY(-110%);
     transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     visibility: hidden;
+    pointer-events: none;
   }
 
   .mobile-drawer.is-open {
     transform: translateY(0);
     visibility: visible;
+    pointer-events: auto;
   }
 
   .mobile-drawer-inner {
