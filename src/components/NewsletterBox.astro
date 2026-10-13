@@ -8,7 +8,7 @@ const { variant = 'section' } = Astro.props;
 
 <section class:list={["newsletter-block", { "newsletter-standalone": variant === 'section' }]} id="newsletter">
   <div class="newsletter-card">
-    <div class="newsletter-decor" aria-hidden="true">🌱</div>
+    <div class="newsletter-decor" aria-hidden="true"></div>
     
     <div class="newsletter-content">
       <span class="eyebrow">Auf dem Laufenden bleiben</span>
@@ -32,7 +32,7 @@ const { variant = 'section' } = Astro.props;
           </button>
         </div>
         <p class="newsletter-disclaimer">
-          🔒 Kein Spam. Ihr könnt euch jederzeit mit einem einzigen Klick wieder abmelden.
+          Kein Spam. Ihr könnt euch jederzeit mit einem einzigen Klick wieder abmelden.
         </p>
       </form>
     </div>
