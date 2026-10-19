@@ -1,45 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
-<BaseLayout 
+<BaseLayout
   title="Bio-Jungpflanzen am Wachtberg | Biosain"
   description="Samenfeste Jungpflanzen aus biologischem Anbau: Große Sortenvielfalt an Paradeisern, Paprika, Chili und Kräutern für Garten und Balkon. Sortenliste herunterladen."
 >
-  <!-- Hero Section -->
-  <section class="plants-hero section-padding">
-    <div class="container">
-      <div class="plants-hero-grid">
-        <div class="plants-hero-text">
-          <span class="eyebrow">Für euren Garten & Balkon</span>
-          <h1 class="plants-title">Bio-Jungpflanzen in Sortenvielfalt</h1>
-          <p class="plants-lead">
-            Biosain produziert nicht nur alle eigenen Jungpflanzen, sondern auch eine große Auswahl an alten und neuen samenfesten Sorten für euch.
-          </p>
-          <p class="plants-desc">
-            Glücklicherweise sind Geschmäcker und Gärten verschieden — denn die Natur ist voller Vielfalt, die für jeden Geschmack und Boden ihre Geschenke bereithält. Wir laden euch auf eine Entdeckungsreise von Geschmäckern, Farben und Formen ein, um eure Gärten und Balkone damit zu befüllen.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#sortenliste" class="btn btn-primary">
-              Sortenliste 2026 ansehen ↓
-            </a>
-            <a href="#termine" class="btn btn-secondary">
-              Markttermine entdecken
-            </a>
-          </div>
-        </div>
-
-        <div class="plants-hero-media">
-          <img 
-            src="/images/card-jungpflanzen.jpg" 
-            alt="Kräftige samenfeste Jungpflanzen im Glashaus am Wachtberg" 
-            class="plants-hero-img"
-          />
-        </div>
-      </div>
+  <PageHero
+    image="/images/card-jungpflanzen.jpg"
+    eyebrow="Für euren Garten & Balkon"
+    title="Bio-Jungpflanzen in Sortenvielfalt"
+    lead="Biosain produziert nicht nur alle eigenen Jungpflanzen, sondern auch eine große Auswahl an alten und neuen samenfesten Sorten für euch."
+  >
+    <p>
+      Glücklicherweise sind Geschmäcker und Gärten verschieden — denn die Natur ist voller Vielfalt, die für jeden Geschmack und Boden ihre Geschenke bereithält. Wir laden euch auf eine Entdeckungsreise von Geschmäckern, Farben und Formen ein, um eure Gärten und Balkone damit zu befüllen.
+    </p>
+    <div class="page-hero-actions">
+      <a href="#sortenliste" class="btn btn-gold">
+        Sortenliste ansehen ↓
+      </a>
+      <a href="#termine" class="btn btn-outline-white">
+        Markttermine entdecken
+      </a>
     </div>
-  </section>
+  </PageHero>
 
   <!-- Sortenliste Download Section -->
   <section class="section-padding sortenliste-section" id="sortenliste">
@@ -181,58 +166,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .plants-hero {
-    background: var(--gradient-hero);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .plants-hero-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-
-  .plants-title {
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-
-  .plants-lead {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--color-ink);
-    font-weight: var(--weight-medium);
-    margin-bottom: var(--space-3);
-  }
-
-  .plants-desc {
-    font-size: 1.05rem;
-    line-height: 1.65;
-    color: var(--color-ink-soft);
-    margin-bottom: var(--space-6);
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .plants-hero-media {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--color-border);
-    aspect-ratio: 4 / 3;
-  }
-
-  .plants-hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   /* Sortenliste section */
   .sortenliste-section {
     background-color: var(--color-surface);
@@ -405,10 +338,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (max-width: 900px) {
-    .plants-hero-grid {
-      grid-template-columns: 1fr;
-    }
-
     .market-cards-grid {
       grid-template-columns: 1fr;
     }

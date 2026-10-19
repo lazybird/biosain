@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const bank = {
   kontoinhaber: "Jahbauer-Biosain",
@@ -17,15 +18,12 @@ const bank = {
   showBanner={false}
   noindex={true}
 >
-  <section class="section-padding confirmation-hero">
-    <div class="container container-narrow text-center">
-      <span class="eyebrow">Anmeldung erfolgreich</span>
-      <h1>Vielen Dank für deine Anmeldung!</h1>
-      <p class="lead">
-        Wir haben deine Anmeldung zum Ernteanteil 2026 erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    image="/images/card-solawi.jpg"
+    eyebrow="Anmeldung erfolgreich"
+    title="Vielen Dank für deine Anmeldung!"
+    lead="Wir haben deine Anmeldung zum Ernteanteil 2026 erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten."
+  />
 
   <section class="section-padding container container-narrow">
     <div class="payment-card">
@@ -150,17 +148,6 @@ const bank = {
 </script>
 
 <style>
-  .confirmation-hero {
-    padding-bottom: 0;
-  }
-
-  .lead {
-    font-size: 1.1rem;
-    color: var(--color-ink-soft);
-    max-width: 640px;
-    margin: var(--space-4) auto 0;
-  }
-
   .payment-card,
   .recap-card,
   .contact-card {

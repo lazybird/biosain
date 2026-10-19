@@ -2,27 +2,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SolawiForm from '../components/SolawiForm.astro';
 import SolawiGauge from '../components/SolawiGauge.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout 
   title="Solawi — Gemeinschaftsgetragene Landwirtschaft | Biosain"
   description="Wie die Solawi bei Biosain funktioniert: Wöchentlich frisches, samenfestes Bio-Gemüse direkt vom Wachtberg nach Wien und ins Waldviertel. Jetzt Ernteanteil für 2026 sichern."
 >
-  <!-- Hero / Header -->
-  <section class="solawi-hero section-padding">
-    <div class="container container-narrow text-center">
-      <span class="eyebrow">Gemeinschaftsgetragene Landwirtschaft</span>
-      <h1 class="solawi-title">Solawi — so funktioniert es</h1>
-      <p class="solawi-lead">
-        Eine gemeinschaftsgetragene Landwirtschaft ermöglicht Verbraucher*innen und Produzent*innen, außerhalb eines marktwirtschaftlichen Systems — das zumeist weder fair, gesund noch ökologisch tragbar ist — neu in Beziehung zu treten.
-      </p>
-      <div class="hero-cta-wrap">
-        <a href="#anmelden" class="btn btn-primary">
-          Für einen Ernteanteil anmelden ↓
-        </a>
-      </div>
+  <PageHero
+    image="/images/card-solawi.jpg"
+    eyebrow="Gemeinschaftsgetragene Landwirtschaft"
+    title="Solawi — so funktioniert es"
+    lead="Eine gemeinschaftsgetragene Landwirtschaft ermöglicht Verbraucher*innen und Produzent*innen, außerhalb eines marktwirtschaftlichen Systems — das zumeist weder fair, gesund noch ökologisch tragbar ist — neu in Beziehung zu treten."
+  >
+    <div class="page-hero-actions">
+      <a href="#anmelden" class="btn btn-gold">
+        Für einen Ernteanteil anmelden ↓
+      </a>
     </div>
-  </section>
+  </PageHero>
 
   <!-- Jauge Quota Solawi -->
   <section class="container container-narrow solawi-gauge-section">
@@ -251,27 +249,6 @@ import SolawiGauge from '../components/SolawiGauge.astro';
 </BaseLayout>
 
 <style>
-  .solawi-hero {
-    background: var(--gradient-hero);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .solawi-title {
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-
-  .solawi-lead {
-    font-size: clamp(1.1rem, 2.2vw, 1.25rem);
-    line-height: 1.65;
-    color: var(--color-ink-soft);
-    margin-bottom: var(--space-6);
-  }
-
-  .hero-cta-wrap {
-    margin-top: var(--space-4);
-  }
-
   .solawi-gauge-section {
     margin-top: -2rem;
     position: relative;

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 interface Props {
   title: string;
@@ -10,12 +11,7 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — Biosain`} description={description} showBanner={false}>
-  <div class="legal-hero">
-    <div class="container container-narrow">
-      <span class="eyebrow">Rechtliches</span>
-      <h1 class="legal-title">{title}</h1>
-    </div>
-  </div>
+  <PageHero image="/images/hero-bg.jpg" eyebrow="Rechtliches" title={title} />
 
   <div class="legal-content section-padding">
     <div class="container container-narrow">
@@ -27,16 +23,6 @@ const { title, description } = Astro.props;
 </BaseLayout>
 
 <style>
-  .legal-hero {
-    background: var(--gradient-hero);
-    padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .legal-title {
-    margin-top: var(--space-2);
-  }
-
   .legal-card {
     background-color: var(--color-surface-card);
     padding: clamp(1.5rem, 4vw, 3rem);

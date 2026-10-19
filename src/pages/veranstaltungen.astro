@@ -2,22 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventFilter from '../components/EventFilter.astro';
 import NewsletterBox from '../components/NewsletterBox.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout 
   title="Veranstaltungen, Workshops & Mitmachen | Biosain"
   description="Termine für Jungpflanzenmärkte, Slowfood-Märkte, Praxis-Workshops zu lebendigem Boden und Saatgut sowie Praktika und Saisonjobs am Biohof am Wachtberg."
 >
-  <!-- Hero Section -->
-  <section class="events-hero section-padding">
-    <div class="container text-center container-narrow">
-      <span class="eyebrow">Gemeinsam lernen & erleben</span>
-      <h1 class="events-title">Veranstaltungen & Mitmachen</h1>
-      <p class="events-lead">
-        Workshops, Jungpflanzenmärkte, Slowfood-Märkte, Aktionstage, Kunst in der Natur — und die Möglichkeit, bei uns auf dem Hof zu arbeiten, zu lernen und mitzugestalten.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    image="/images/card-veranstaltungen.jpg"
+    eyebrow="Gemeinsam lernen & erleben"
+    title="Veranstaltungen & Mitmachen"
+    lead="Workshops, Jungpflanzenmärkte, Slowfood-Märkte, Aktionstage, Kunst in der Natur — und die Möglichkeit, bei uns auf dem Hof zu arbeiten, zu lernen und mitzugestalten."
+  />
 
   <!-- Interactive Calendar Filter -->
   <section class="section-padding calendar-section">
@@ -95,22 +92,6 @@ import NewsletterBox from '../components/NewsletterBox.astro';
 </BaseLayout>
 
 <style>
-  .events-hero {
-    background: var(--gradient-hero);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .events-title {
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-
-  .events-lead {
-    font-size: clamp(1.1rem, 2.2vw, 1.25rem);
-    line-height: 1.6;
-    color: var(--color-ink-soft);
-  }
-
   .calendar-section {
     background-color: var(--color-surface);
   }
