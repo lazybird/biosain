@@ -2,10 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const bank = {
-  kontoinhaber: "Tristan Toé — BIOsain", // TODO: confirmer l'intitulé exact du compte
-  iban: "AT00 0000 0000 0000 0000", // TODO: remplacer par le vrai IBAN
-  bic: "XXXXXXXX", // TODO: remplacer par le vrai BIC
-  bankname: "Name der Bank", // TODO: remplacer par le nom de la banque
+  kontoinhaber: "Jahbauer-Biosain",
+  iban: "AT63 5300 0033 5501 3854",
+  bic: "HYPNATWW",
+  bankname: "Hypo NOE Landesbank AG Horn, Kirschenplatz 11, 3580 Horn",
   betrag: "1.070 €",
   verwendungszweck: "Ernteanteil 2026 + Vor- und Nachname"
 };
@@ -66,6 +66,9 @@ const bank = {
 
       <p class="payment-hint">
         Wichtig: Gib unbedingt deinen vollständigen Namen im Verwendungszweck an — nur so können wir deine Zahlung deiner Anmeldung zuordnen.
+      </p>
+      <p class="payment-hint">
+        Im Falle eines späteren Einstiegs in die Saison werden die Beiträge aliquot berechnet.
       </p>
 
       <div class="payment-actions">
