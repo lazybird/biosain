@@ -9,13 +9,15 @@ interface Props {
   description?: string;
   image?: string;
   showBanner?: boolean;
+  noindex?: boolean;
 }
 
 const {
   title = "Biosain — Lebendige Böden. Samenfestes Gemüse.",
   description = "Vielfalts-Marktgärtnerei am Wachtberg (Waldviertel) — frisches Gemüse, samenfeste Jungpflanzen und gelebte Gemeinschaft in der Solawi.",
   image = "/images/hero-bg.jpg",
-  showBanner = true
+  showBanner = true,
+  noindex = false
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://biosain.at");
@@ -28,6 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://biosain.
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
 
   <!-- Primary Meta Tags -->
   <title>{title}</title>

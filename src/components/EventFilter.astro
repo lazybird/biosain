@@ -1,6 +1,7 @@
 ---
 interface EventItem {
   date: string;
+  endDate?: string; // ISO yyyy-mm-dd — dernier jour où l'événement/action est pertinent ; absent = jamais périmé
   title: string;
   time: string;
   category: 'maerkte' | 'workshops' | 'kunst' | 'jobs';
@@ -13,6 +14,7 @@ interface EventItem {
 const events: EventItem[] = [
   {
     date: "25.–26. April 2026",
+    endDate: "2026-04-26",
     title: "Jungpflanzenmarkt am Wachtberg",
     time: "10:00 – 17:00 Uhr",
     category: "maerkte",
@@ -23,6 +25,7 @@ const events: EventItem[] = [
   },
   {
     date: "17.–19. April 2026",
+    endDate: "2026-04-19",
     title: "Raritätenbörse im Botanischen Garten Wien",
     time: "09:30 – 18:00 Uhr",
     category: "maerkte",
@@ -33,6 +36,7 @@ const events: EventItem[] = [
   },
   {
     date: "1. Mai 2026",
+    endDate: "2026-05-01",
     title: "Arche Noah Jungpflanzenmarkt",
     time: "09:00 – 17:00 Uhr",
     category: "maerkte",
@@ -43,6 +47,7 @@ const events: EventItem[] = [
   },
   {
     date: "Mai & Juni 2026",
+    endDate: "2026-06-30",
     title: "Workshops: Lebendige Böden & Humusaufbau",
     time: "Termine auf Anfrage & Ankündigung",
     category: "workshops",
@@ -53,6 +58,7 @@ const events: EventItem[] = [
   },
   {
     date: "August 2026",
+    endDate: "2026-08-31",
     title: "Landart-Symposium — Kunst in der Natur",
     time: "Ganztägig",
     category: "kunst",
@@ -63,6 +69,7 @@ const events: EventItem[] = [
   },
   {
     date: "26. September 2026",
+    endDate: "2026-09-26",
     title: "Slowfood-Markt der Erde",
     time: "09:00 – 13:00 Uhr",
     category: "maerkte",
@@ -73,6 +80,7 @@ const events: EventItem[] = [
   },
   {
     date: "10. & 24. Oktober 2026",
+    endDate: "2026-10-24",
     title: "Slowfood-Markt der Erde",
     time: "09:00 – 13:00 Uhr",
     category: "maerkte",
@@ -83,6 +91,7 @@ const events: EventItem[] = [
   },
   {
     date: "14. & 28. November 2026",
+    endDate: "2026-11-28",
     title: "Slowfood-Markt der Erde",
     time: "09:00 – 13:00 Uhr",
     category: "maerkte",
@@ -93,6 +102,7 @@ const events: EventItem[] = [
   },
   {
     date: "12. & 23. Dezember 2026",
+    endDate: "2026-12-23",
     title: "Slowfood-Markt der Erde (Winter-Edition)",
     time: "09:00 – 13:00 Uhr / 14:00 – 18:00 Uhr",
     category: "maerkte",
@@ -103,6 +113,7 @@ const events: EventItem[] = [
   },
   {
     date: "Saison 2026",
+    // pas d'endDate : offre d'emploi valable toute la saison, jamais périmée automatiquement
     title: "Praktika & Saisonmitarbeit am Bio-Hof",
     time: "Vollzeit / Teilzeit nach Vereinbarung",
     category: "jobs",
@@ -149,21 +160,21 @@ const events: EventItem[] = [
       </thead>
       <tbody>
         {events.map((event) => (
-          <tr class="event-row" data-category={event.category}>
-            <td class="event-date">
+          <tr class="event-row" data-category={event.category} data-end-date={event.endDate}>
+            <td class="event-date" data-label="Datum">
               <strong>{event.date}</strong>
             </td>
-            <td class="event-name">
+            <td class="event-name" data-label="Veranstaltung">
               <span class="event-title">{event.title}</span>
             </td>
-            <td class="event-time">{event.time}</td>
-            <td class="event-location">{event.location}</td>
-            <td>
+            <td class="event-time" data-label="Uhrzeit">{event.time}</td>
+            <td class="event-location" data-label="Ort">{event.location}</td>
+            <td data-label="Kategorie">
               <span class:list={["badge", event.category === 'maerkte' ? 'badge-brand' : 'badge-forest']}>
                 {event.categoryLabel}
               </span>
             </td>
-            <td class="event-action">
+            <td class="event-action" data-label="Aktion">
               {event.infoLink && (
                 <a href={event.infoLink} class="btn btn-secondary btn-xs" target={event.infoLink.startsWith('http') ? '_blank' : undefined} rel={event.infoLink.startsWith('http') ? 'noopener noreferrer' : undefined}>
                   {event.infoText || "Details"}
@@ -180,6 +191,15 @@ const events: EventItem[] = [
 <script>
   const filterBtns = document.querySelectorAll('.filter-btn');
   const eventRows = document.querySelectorAll<HTMLElement>('.event-row');
+
+  // Masque l'action (bouton) des événements dont la date est déjà passée
+  const todayISO = new Date().toISOString().slice(0, 10);
+  eventRows.forEach(row => {
+    const endDate = row.getAttribute('data-end-date');
+    if (endDate && endDate < todayISO) {
+      row.classList.add('event-past');
+    }
+  });
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -264,5 +284,68 @@ const events: EventItem[] = [
     padding: 0.35rem 0.85rem;
     font-size: var(--text-xs);
     border-radius: var(--radius-full);
+  }
+
+  /* Événement passé : l'action (bouton) disparaît, la ligne reste visible mais estompée */
+  .event-past {
+    opacity: 0.55;
+  }
+
+  .event-past .event-action {
+    visibility: hidden;
+  }
+
+  /* Mobile : la table se transforme en liste de cartes empilées plutôt que de scroller horizontalement */
+  @media (max-width: 680px) {
+    .table-responsive {
+      overflow-x: visible;
+      background: none;
+      box-shadow: none;
+      border: none;
+    }
+
+    .events-table {
+      min-width: 0;
+    }
+
+    .events-table thead {
+      display: none;
+    }
+
+    .events-table, .events-table tbody, .events-table tr, .events-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .events-table tr {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .events-table td {
+      border-bottom: none;
+      padding: var(--space-1) 0;
+    }
+
+    .events-table td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-ink-faint);
+      margin-top: var(--space-2);
+    }
+
+    .events-table td.event-date::before {
+      margin-top: 0;
+    }
+
+    .event-action {
+      margin-top: var(--space-2);
+    }
   }
 </style>

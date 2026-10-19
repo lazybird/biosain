@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const bank = {
+  kontoinhaber: "Tristan Toé — BIOsain", // TODO: confirmer l'intitulé exact du compte
+  iban: "AT00 0000 0000 0000 0000", // TODO: remplacer par le vrai IBAN
+  bic: "XXXXXXXX", // TODO: remplacer par le vrai BIC
+  bankname: "Name der Bank", // TODO: remplacer par le nom de la banque
+  betrag: "1.070 €",
+  verwendungszweck: "Ernteanteil 2026 + Vor- und Nachname"
+};
+---
+
+<BaseLayout
+  title="Anmeldung bestätigt — Biosain"
+  description="Deine Anmeldung zum Ernteanteil ist eingegangen. Hier findest du alle Infos zur Überweisung."
+  showBanner={false}
+  noindex={true}
+>
+  <section class="section-padding confirmation-hero">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Anmeldung erfolgreich</span>
+      <h1>Vielen Dank für deine Anmeldung!</h1>
+      <p class="lead">
+        Wir haben deine Anmeldung zum Ernteanteil 2026 erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding container container-narrow">
+    <div class="payment-card">
+      <h2>Zahlungsinformationen</h2>
+      <p class="payment-intro">
+        Bitte überweist den Saisonbeitrag innerhalb der nächsten 14 Tage auf folgendes Konto:
+      </p>
+
+      <dl class="bank-details" id="bank-details">
+        <div class="bank-row">
+          <dt>Kontoinhaber</dt>
+          <dd>{bank.kontoinhaber}</dd>
+        </div>
+        <div class="bank-row">
+          <dt>IBAN</dt>
+          <dd class="copyable" data-copy-value={bank.iban}>
+            <span>{bank.iban}</span>
+            <button type="button" class="copy-btn" data-copy-target={bank.iban} aria-label="IBAN kopieren">Kopieren</button>
+          </dd>
+        </div>
+        <div class="bank-row">
+          <dt>BIC</dt>
+          <dd>{bank.bic}</dd>
+        </div>
+        <div class="bank-row">
+          <dt>Bank</dt>
+          <dd>{bank.bankname}</dd>
+        </div>
+        <div class="bank-row">
+          <dt>Betrag</dt>
+          <dd><strong>{bank.betrag}</strong></dd>
+        </div>
+        <div class="bank-row">
+          <dt>Verwendungszweck</dt>
+          <dd><strong>{bank.verwendungszweck}</strong></dd>
+        </div>
+      </dl>
+
+      <p class="payment-hint">
+        Wichtig: Gib unbedingt deinen vollständigen Namen im Verwendungszweck an — nur so können wir deine Zahlung deiner Anmeldung zuordnen.
+      </p>
+
+      <div class="payment-actions">
+        <button type="button" class="btn btn-primary" id="print-btn">
+          Als PDF speichern / drucken
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding container container-narrow">
+    <div class="recap-card">
+      <h2>Eure Optionen auf einen Blick</h2>
+      <div class="table-responsive">
+        <table>
+          <tbody>
+            <tr>
+              <th style="width: 32%;">Saison</th>
+              <td><strong>Anfang April bis Ende November</strong></td>
+            </tr>
+            <tr>
+              <th>Lieferrhythmus</th>
+              <td>Wöchentlich freitags (33 Lieferwochen, insgesamt 34 Ernteanteile)</td>
+            </tr>
+            <tr>
+              <th>Saisonbeitrag</th>
+              <td>1.070 € (entspricht ca. 31,40 € pro reichhaltigem Wochenanteil)</td>
+            </tr>
+            <tr>
+              <th>Abholung Wien<br><small>(jeden Freitag)</small></th>
+              <td>
+                <ul class="recap-list">
+                  <li><strong>1040 Wien:</strong> Reformhaus Wallner</li>
+                  <li><strong>1020 Wien:</strong> Ihana, Foodcoop Stadtgut, Wins, Salon im Park</li>
+                  <li><strong>1150 Wien:</strong> Foodcoops d'Speis, Allmunde, Vegan Foodcoop</li>
+                  <li><strong>1070 Wien:</strong> Cafe Natural Winebar</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Abholung Waldviertel</th>
+              <td><strong>Ab Hof</strong> (Am Wachtberg 78, 3571 Gars/Thunau) und <strong>Working Space Gars am Kamp</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding container container-narrow">
+    <div class="contact-card text-center">
+      <h2>Fragen zu deiner Anmeldung?</h2>
+      <p>Meldet euch jederzeit bei uns — wir helfen gerne weiter.</p>
+      <div class="contact-links">
+        <a href="mailto:office.biosain@gmail.com" class="btn btn-secondary">office.biosain@gmail.com</a>
+        <a href="tel:06803216521" class="btn btn-outline">0680 321 65 21</a>
+      </div>
+      <a href="/solawi" class="back-link">← Zurück zur Solawi-Seite</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.getAttribute('data-copy-target') || '';
+      try {
+        await navigator.clipboard.writeText(value.replace(/\s/g, ''));
+        const original = btn.textContent;
+        btn.textContent = 'Kopiert ✓';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      } catch (e) {
+        /* clipboard API indisponible (ex: http non sécurisé) — on ignore silencieusement */
+      }
+    });
+  });
+</script>
+
+<style>
+  .confirmation-hero {
+    padding-bottom: 0;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    color: var(--color-ink-soft);
+    max-width: 640px;
+    margin: var(--space-4) auto 0;
+  }
+
+  .payment-card,
+  .recap-card,
+  .contact-card {
+    background-color: var(--color-surface-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    padding: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .payment-intro {
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-5);
+  }
+
+  .bank-details {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-5);
+  }
+
+  .bank-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .bank-row dt {
+    font-weight: 600;
+    color: var(--color-ink-soft);
+  }
+
+  .bank-row dd {
+    margin: 0;
+  }
+
+  .copyable {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .copy-btn {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-sunken);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.75rem;
+    font-size: var(--text-xs);
+    cursor: pointer;
+  }
+
+  .payment-hint {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    background-color: var(--color-surface-sunken);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+  }
+
+  .payment-actions {
+    margin-top: var(--space-6);
+  }
+
+  .recap-list {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: var(--space-5) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: var(--space-3);
+    color: var(--color-ink-soft);
+  }
+
+  section + section {
+    padding-top: 0;
+  }
+
+  @media print {
+    :global(header),
+    :global(footer),
+    .payment-actions,
+    .contact-card,
+    .copy-btn {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .bank-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
