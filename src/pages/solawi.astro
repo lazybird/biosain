@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SolawiForm from '../components/SolawiForm.astro';
 import SolawiGauge from '../components/SolawiGauge.astro';
 import PageHero from '../components/PageHero.astro';
+import { anteile, formatPreis, formatProWoche } from '../data/anteile';
 ---
 
 <BaseLayout 
@@ -161,8 +162,15 @@ import PageHero from '../components/PageHero.astro';
             <tr>
               <th>Saisonbeitrag</th>
               <td>
-                <span class="price-highlight">1.070 €</span>
-                <span class="price-note">(entspricht ca. 31,40 € pro reichhaltigem Wochenanteil)</span>
+                <ul class="price-list">
+                  {anteile.map((a) => (
+                    <li>
+                      <strong>{a.label}</strong> <span class="price-note">({a.personen})</span>:
+                      <span class="price-highlight">{formatPreis(a.preis)}</span>
+                      <span class="price-note">ca. {formatProWoche(a.preis)} pro Woche</span>
+                    </li>
+                  ))}
+                </ul>
               </td>
             </tr>
             <tr>
@@ -339,11 +347,19 @@ import PageHero from '../components/PageHero.astro';
     margin-bottom: var(--space-8);
   }
 
+  .price-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
   .price-highlight {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: var(--weight-bold);
     color: var(--color-brand-secondary-dark);
-    margin-right: var(--space-2);
+    margin: 0 var(--space-2) 0 var(--space-1);
   }
 
   .price-note {

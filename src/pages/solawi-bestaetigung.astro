@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import { anteile, formatPreis, formatProWoche } from '../data/anteile';
 
 const bank = {
   kontoinhaber: "Jahbauer-Biosain",
   iban: "AT63 5300 0033 5501 3854",
   bic: "HYPNATWW",
   bankname: "Hypo NOE Landesbank AG Horn, Kirschenplatz 11, 3580 Horn",
-  betrag: "1.070 €",
   verwendungszweck: "Ernteanteil 2026 + Vor- und Nachname"
 };
 ---
@@ -54,7 +54,13 @@ const bank = {
         </div>
         <div class="bank-row">
           <dt>Betrag</dt>
-          <dd><strong>{bank.betrag}</strong></dd>
+          <dd>
+            <ul class="recap-list">
+              {anteile.map((a) => (
+                <li>{a.label}: <strong>{formatPreis(a.preis)}</strong></li>
+              ))}
+            </ul>
+          </dd>
         </div>
         <div class="bank-row">
           <dt>Verwendungszweck</dt>
@@ -93,7 +99,13 @@ const bank = {
             </tr>
             <tr>
               <th>Saisonbeitrag</th>
-              <td>1.070 € (entspricht ca. 31,40 € pro reichhaltigem Wochenanteil)</td>
+              <td>
+                <ul class="recap-list">
+                  {anteile.map((a) => (
+                    <li><strong>{a.label}</strong> ({a.personen}): {formatPreis(a.preis)} — ca. {formatProWoche(a.preis)} pro Woche</li>
+                  ))}
+                </ul>
+              </td>
             </tr>
             <tr>
               <th>Abholung Wien<br><small>(jeden Freitag)</small></th>
