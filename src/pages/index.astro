@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PillarCard from '../components/PillarCard.astro';
 import SolawiGauge from '../components/SolawiGauge.astro';
 import NewsletterBox from '../components/NewsletterBox.astro';
+import { SAISON } from '../data/anteile';
 ---
 
 <BaseLayout title="Biosain — Vielfalts-Marktgärtnerei am Wachtberg">
@@ -82,7 +83,7 @@ import NewsletterBox from '../components/NewsletterBox.astro';
             description="Wöchentlich frisches, vielfältiges und saisonales Gemüse — direkt vom Feld, geerntet zum idealen Reifezeitpunkt. Von April bis November versorgen wir rund 90 Haushalte mit dem Besten, was der Wachtberg hervorbringt."
             ctaText="So funktioniert es & Anmelden →"
             ctaHref="/solawi"
-            badgeText="Saison 2026 läuft"
+            badgeText={`Anmeldung Saison ${SAISON} offen`}
           />
         </div>
 
@@ -116,7 +117,7 @@ import NewsletterBox from '../components/NewsletterBox.astro';
 
       <!-- Solawi Gauge Teaser -->
       <div class="pillars-gauge-wrap scroll-reveal delay-4">
-        <SolawiGauge available={true} seasonYear={2026} />
+        <SolawiGauge available={true} />
       </div>
     </div>
   </section>

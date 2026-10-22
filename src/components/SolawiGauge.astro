@@ -1,4 +1,6 @@
 ---
+import { SAISON } from '../data/anteile';
+
 interface Props {
   available?: boolean;
   seasonYear?: number;
@@ -6,7 +8,7 @@ interface Props {
 
 const {
   available = true,
-  seasonYear = 2026
+  seasonYear = SAISON
 } = Astro.props;
 ---
 

@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import { anteile, formatPreis, formatProWoche } from '../data/anteile';
+import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
 
 const bank = {
   kontoinhaber: "Jahbauer-Biosain",
   iban: "AT63 5300 0033 5501 3854",
   bic: "HYPNATWW",
   bankname: "Hypo NOE Landesbank AG Horn, Kirschenplatz 11, 3580 Horn",
-  verwendungszweck: "Ernteanteil 2026 + Vor- und Nachname"
+  verwendungszweck: `Ernteanteil ${SAISON} + Vor- und Nachname`
 };
 ---
 
@@ -22,7 +22,7 @@ const bank = {
     image="/images/card-solawi.jpg"
     eyebrow="Anmeldung erfolgreich"
     title="Vielen Dank für deine Anmeldung!"
-    lead="Wir haben deine Anmeldung zum Ernteanteil 2026 erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten."
+    lead={`Wir haben deine Anmeldung zum Ernteanteil ${SAISON} erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten.`}
   />
 
   <section class="section-padding container container-narrow">

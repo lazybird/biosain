@@ -1,4 +1,6 @@
 ---
+import { SAISON } from '../data/anteile';
+
 const GOOGLE_FORM_ID = "1FAIpQLScg3tqrPztv4zzMBjEelP9KwBUklGPIYGL4Og-mYGFv9zGilA";
 const googleFormEmbedUrl = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/viewform?embedded=true`;
 ---
@@ -21,7 +23,7 @@ const googleFormEmbedUrl = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/
         frameborder="0"
         marginheight="0"
         marginwidth="0"
-        title="Biosain – Ernteanteil-Anmeldung 2026"
+        title={`Biosain – Ernteanteil-Anmeldung ${SAISON}`}
       >Formular wird geladen…</iframe>
     </div>
   </div>

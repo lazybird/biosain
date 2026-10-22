@@ -1,3 +1,4 @@
+export const SAISON = 2027;
 export const ANZAHL_ERNTEANTEILE = 34;
 
 export const anteile = [
