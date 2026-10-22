@@ -4,6 +4,12 @@ interface Props {
 }
 
 const { variant = 'section' } = Astro.props;
+
+// Les valeurs doivent correspondre exactement au Google Form « Biosain – Newsletter »
+const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeEtYkwzCLQhtj8B9boYdLJLyEgylSllpqLigYH4yzuYOMBZg/formResponse";
+const ENTRY_EMAIL = "entry.1580382414";
+const ENTRY_EINWILLIGUNG = "entry.715833628";
+const EINWILLIGUNG_TEXT = "Ich möchte den Biosain-Newsletter per E-Mail erhalten. Abmeldung jederzeit möglich. Details: https://biosain.at/datenschutz";
 ---
 
 <section class:list={["newsletter-block", { "newsletter-standalone": variant === 'section' }]} id="newsletter">
@@ -17,27 +23,103 @@ const { variant = 'section' } = Astro.props;
         1-2 Mal im Monat: Geschichten vom Hof, Saisonrezepte, Markttermine und Ankündigungen zu Workshops — direkt in euer Postfach.
       </p>
 
-      <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); alert('Vielen Dank für deine Anmeldung! Du erhältst in Kürze eine Bestätigungs-E-Mail.');">
+      <form class="newsletter-form" action={FORM_ACTION} method="POST" data-newsletter-form>
         <div class="input-wrap">
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Deine E-Mail-Adresse" 
-            required 
-            class="newsletter-input" 
+          <input
+            type="email"
+            name={ENTRY_EMAIL}
+            placeholder="Deine E-Mail-Adresse"
+            required
+            class="newsletter-input"
             aria-label="E-Mail-Adresse für den Newsletter"
           />
           <button type="submit" class="btn btn-gold btn-newsletter">
             Anmelden
           </button>
         </div>
+        <label class="newsletter-consent">
+          <input type="checkbox" name={ENTRY_EINWILLIGUNG} value={EINWILLIGUNG_TEXT} required />
+          <span>
+            Ich möchte den Biosain-Newsletter per E-Mail erhalten. Abmeldung jederzeit möglich.
+            <a href="/datenschutz">Datenschutz</a>
+          </span>
+        </label>
+        <input type="text" name="website" class="newsletter-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <p class="newsletter-disclaimer">
-          Kein Spam. Ihr könnt euch jederzeit mit einem einzigen Klick wieder abmelden.
+          Kein Spam. Abmelden könnt ihr euch jederzeit per E-Mail an office.biosain@gmail.com.
         </p>
       </form>
+      <p class="newsletter-status" role="status" aria-live="polite" hidden></p>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-newsletter-form]').forEach((form) => {
+    const status = form.parentElement?.querySelector<HTMLElement>('.newsletter-status');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      if (data.get('website')) return; // piège à robots rempli
+      data.delete('website');
+
+      if (button) button.disabled = true;
+      try {
+        // Google n'autorise pas la lecture de sa réponse : en no-cors, une requête partie = succès supposé
+        await fetch(form.action, { method: 'POST', mode: 'no-cors', body: data });
+        form.hidden = true;
+        if (status) {
+          status.textContent = 'Vielen Dank! Du bist jetzt für den Biosain-Newsletter angemeldet.';
+          status.hidden = false;
+        }
+      } catch {
+        if (status) {
+          status.textContent = 'Das hat leider nicht geklappt. Bitte versuche es später noch einmal oder schreib uns an office.biosain@gmail.com.';
+          status.hidden = false;
+        }
+        if (button) button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .newsletter-consent {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+    font-size: var(--text-sm);
+    color: #D6D0BC;
+    margin-bottom: var(--space-3);
+    cursor: pointer;
+  }
+
+  .newsletter-consent input {
+    margin-top: 0.2rem;
+    accent-color: var(--color-brand-primary);
+  }
+
+  .newsletter-consent a {
+    color: #F2D542;
+  }
+
+  .newsletter-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .newsletter-status {
+    font-size: 1.05rem;
+    color: #F2D542;
+    font-weight: var(--weight-semibold);
+    margin: 0;
+  }
+</style>
 
 <style>
   .newsletter-block {
