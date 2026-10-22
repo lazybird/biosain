@@ -49,14 +49,26 @@ const EINWILLIGUNG_TEXT = "Ich möchte den Biosain-Newsletter per E-Mail erhalte
           Kein Spam. Abmelden könnt ihr euch jederzeit per E-Mail an office.biosain@gmail.com.
         </p>
       </form>
-      <p class="newsletter-status" role="status" aria-live="polite" hidden></p>
+      <div class="newsletter-success" role="status" aria-live="polite" tabindex="-1" hidden>
+        <span class="success-icon" aria-hidden="true">✓</span>
+        <div>
+          <p class="success-title">Vielen Dank für deine Anmeldung!</p>
+          <p class="success-text">
+            Du erhältst ab jetzt unseren Newsletter mit Neuigkeiten vom Wachtberg. Abmelden kannst du dich jederzeit per E-Mail an office.biosain@gmail.com.
+          </p>
+        </div>
+      </div>
+      <p class="newsletter-error" role="alert" hidden>
+        Das hat leider nicht geklappt. Bitte versuche es später noch einmal oder schreib uns an office.biosain@gmail.com.
+      </p>
     </div>
   </div>
 </section>
 
 <script>
   document.querySelectorAll<HTMLFormElement>('[data-newsletter-form]').forEach((form) => {
-    const status = form.parentElement?.querySelector<HTMLElement>('.newsletter-status');
+    const success = form.parentElement?.querySelector<HTMLElement>('.newsletter-success');
+    const error = form.parentElement?.querySelector<HTMLElement>('.newsletter-error');
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 
     form.addEventListener('submit', async (event) => {
@@ -65,21 +77,26 @@ const EINWILLIGUNG_TEXT = "Ich möchte den Biosain-Newsletter per E-Mail erhalte
       if (data.get('website')) return; // piège à robots rempli
       data.delete('website');
 
-      if (button) button.disabled = true;
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Wird gesendet…';
+      }
+      if (error) error.hidden = true;
       try {
         // Google n'autorise pas la lecture de sa réponse : en no-cors, une requête partie = succès supposé
         await fetch(form.action, { method: 'POST', mode: 'no-cors', body: data });
         form.hidden = true;
-        if (status) {
-          status.textContent = 'Vielen Dank! Du bist jetzt für den Biosain-Newsletter angemeldet.';
-          status.hidden = false;
+        if (success) {
+          success.hidden = false;
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          success.focus({ preventScroll: true });
         }
       } catch {
-        if (status) {
-          status.textContent = 'Das hat leider nicht geklappt. Bitte versuche es später noch einmal oder schreib uns an office.biosain@gmail.com.';
-          status.hidden = false;
+        if (error) error.hidden = false;
+        if (button) {
+          button.disabled = false;
+          button.textContent = 'Anmelden';
         }
-        if (button) button.disabled = false;
       }
     });
   });
@@ -113,11 +130,58 @@ const EINWILLIGUNG_TEXT = "Ich möchte den Biosain-Newsletter per E-Mail erhalte
     opacity: 0;
   }
 
-  .newsletter-status {
-    font-size: 1.05rem;
-    color: #F2D542;
-    font-weight: var(--weight-semibold);
+  .newsletter-success:not([hidden]) {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    background: rgba(255, 253, 246, 0.08);
+    border: 1px solid rgba(242, 213, 66, 0.45);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    outline: none;
+    animation: success-in 0.35s ease-out;
+  }
+
+  .success-icon {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+    background: #F2D542;
+    color: #1E3324;
+    font-weight: var(--weight-bold);
+    font-size: 1.15rem;
+    display: grid;
+    place-items: center;
+  }
+
+  .success-title {
+    color: #FFFFFF;
+    font-size: 1.15rem;
+    font-weight: var(--weight-bold);
+    margin: 0 0 var(--space-1);
+  }
+
+  .success-text {
+    color: #D6D0BC;
+    font-size: var(--text-sm);
     margin: 0;
+  }
+
+  .newsletter-error {
+    color: #FFB4A8;
+    font-size: var(--text-sm);
+    margin: var(--space-3) 0 0;
+  }
+
+  .btn-newsletter:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  @keyframes success-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
   }
 </style>
 
