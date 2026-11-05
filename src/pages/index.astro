@@ -4,6 +4,12 @@ import PillarCard from '../components/PillarCard.astro';
 import SolawiGauge from '../components/SolawiGauge.astro';
 import NewsletterBox from '../components/NewsletterBox.astro';
 import { SAISON } from '../data/anteile';
+import { events } from '../data/termine';
+
+const buildDay = new Date().toISOString().slice(0, 10);
+const agendaEvents = events
+  .filter((e) => e.endDate && e.endDate >= buildDay)
+  .sort((a, b) => a.endDate!.localeCompare(b.endDate!));
 ---
 
 <BaseLayout title="Biosain — Vielfalts-Marktgärtnerei am Wachtberg">
@@ -152,25 +158,15 @@ import { SAISON } from '../data/anteile';
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>17.–19. April</strong></td>
-              <td>Raritätenbörse</td>
-              <td>Botanischer Garten Wien</td>
-            </tr>
-            <tr>
-              <td><strong>25.–26. April</strong></td>
-              <td><strong>Jungpflanzenmarkt am Wachtberg</strong></td>
-              <td>Wachtberg, Gars am Kamp</td>
-            </tr>
-            <tr>
-              <td><strong>1. Mai</strong></td>
-              <td>Jungpflanzenmarkt Arche Noah</td>
-              <td>Arche Noah, Schiltern</td>
-            </tr>
-            <tr>
-              <td><strong>26. September</strong></td>
-              <td>Slowfood-Markt der Erde</td>
-              <td>Hauptplatz, Gars am Kamp</td>
+            {agendaEvents.map((event, i) => (
+              <tr class="agenda-row" data-end-date={event.endDate} hidden={i >= 4}>
+                <td><strong>{event.date}</strong></td>
+                <td>{event.title}</td>
+                <td>{event.location}</td>
+              </tr>
+            ))}
+            <tr class="agenda-empty" hidden={agendaEvents.length > 0}>
+              <td colspan="3">Neue Termine folgen in Kürze — <a href="#newsletter">per Newsletter informiert bleiben</a>.</td>
             </tr>
           </tbody>
         </table>
@@ -178,6 +174,20 @@ import { SAISON } from '../data/anteile';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const MAX_AGENDA = 4;
+  const today = new Date().toISOString().slice(0, 10);
+  let shown = 0;
+  document.querySelectorAll<HTMLElement>('.agenda-row').forEach((row) => {
+    const end = row.dataset.endDate;
+    const upcoming = !end || end >= today;
+    row.hidden = !upcoming || shown >= MAX_AGENDA;
+    if (!row.hidden) shown++;
+  });
+  const empty = document.querySelector<HTMLElement>('.agenda-empty');
+  if (empty) empty.hidden = shown > 0;
+</script>
 
 <style>
   /* Hero */
