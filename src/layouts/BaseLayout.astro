@@ -57,6 +57,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://biosain.
 
   <!-- Tally embed async script for interactive forms -->
   <script src="https://tally.so/widgets/embed.js" async></script>
+
+  <!-- Umami Analytics -->
+  <script defer src="https://stats.pulsation.cloud/script.js" data-website-id="ab6b3428-7d57-4a21-b3df-ac597cd7fd54"></script>
 </head>
 <body>
   {showBanner && <TopBanner />}
