@@ -9,6 +9,8 @@ import PageHero from '../components/PageHero.astro';
 >
   <PageHero
     image="/images/card-biosain.jpg"
+    imagePosition="center 90%"
+    parallax={false}
     eyebrow="Geschichte & Haltung"
     title="BIOsain am Wachtberg"
     lead="Die Vielfalts-Marktgärtnerei mit den Schwerpunkten — lebendige Böden und samenfestes, geschmackvolles und vitales Gemüse."
@@ -38,9 +40,6 @@ import PageHero from '../components/PageHero.astro';
             alt="Biosain — Kunstvoll auf dem lebendigen Boden gelegt mit frischen Radieschen" 
             class="team-img"
           />
-          <div class="media-caption">
-            Vielfalt und Achtsamkeit im Einklang mit dem Bodenleben.
-          </div>
         </div>
       </div>
     </div>
@@ -119,7 +118,7 @@ import PageHero from '../components/PageHero.astro';
                 <a href="https://nako.bio" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
                   Mehr über Nakôbio erfahren ↗
                 </a>
-                <a href="https://www.leetchi.com/fr/c/biosain-1768159" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                <a href="https://donorbox.org/nakobio/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
                   Projekt mit einer Spende unterstützen ↗
                 </a>
               </div>
@@ -236,14 +235,6 @@ import PageHero from '../components/PageHero.astro';
     object-fit: cover;
   }
 
-  .media-caption {
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--text-xs);
-    color: var(--color-ink-faint);
-    background-color: var(--color-surface-card);
-    text-align: center;
-    border-top: 1px solid var(--color-border);
-  }
 
   /* Philosophy section */
   .philosophy-section {

@@ -5,14 +5,15 @@ interface Props {
   title: string;
   lead?: string;
   imagePosition?: string;
+  parallax?: boolean;
 }
 
-const { image, eyebrow, title, lead, imagePosition = "center center" } = Astro.props;
+const { image, eyebrow, title, lead, imagePosition = "center center", parallax = true } = Astro.props;
 ---
 
 <section class="page-hero">
   <div
-    class="page-hero-bg"
+    class:list={["page-hero-bg", { "no-parallax": !parallax }]}
     aria-hidden="true"
     style={`background-image: url('${image}'); background-position: ${imagePosition};`}
   ></div>
@@ -47,6 +48,10 @@ const { image, eyebrow, title, lead, imagePosition = "center center" } = Astro.p
     background-attachment: fixed;
     z-index: 0;
     filter: saturate(1.08) brightness(0.95);
+  }
+
+  .page-hero-bg.no-parallax {
+    background-attachment: scroll;
   }
 
   .page-hero-overlay {
