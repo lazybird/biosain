@@ -41,15 +41,6 @@ const navItems = [
 
     <!-- Header Actions -->
     <div class="nav-actions">
-      <a 
-        href="https://www.leetchi.com/fr/c/biosain-1768159" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="nav-donate-link"
-        title="Solidarität & Projektspende für Nakôbio"
-      >
-        Spenden
-      </a>
       <a href="/solawi#anmelden" class="btn btn-primary btn-cta">
         Ernteteiler*in werden
       </a>
@@ -104,14 +95,6 @@ const navItems = [
     <div class="mobile-drawer-actions">
       <a href="/solawi#anmelden" class="btn btn-primary mobile-cta-btn">
         Ernteteiler*in werden
-      </a>
-      <a 
-        href="https://www.leetchi.com/fr/c/biosain-1768159" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-outline mobile-donate-btn"
-      >
-        Spenden / Unterstützen ↗
       </a>
     </div>
   </div>
@@ -288,33 +271,8 @@ const navItems = [
     padding: 0.6rem 1.3rem;
   }
 
-  .nav-donate-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    font-weight: var(--weight-bold);
-    color: var(--color-ink-soft);
-    text-decoration: none;
-    padding: 0.45rem 0.8rem;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--color-border);
-    background-color: var(--color-surface);
-    transition: all var(--transition-fast);
-  }
 
-  .nav-donate-link:hover {
-    color: #9333ea;
-    border-color: #f43f5e;
-    background-color: #fff1f2;
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
-  }
 
-  .nav-donate-link .heart-icon {
-    font-size: 0.9rem;
-    line-height: 1;
-  }
 
   /* Mobile Toggle */
   .mobile-toggle {
@@ -450,22 +408,12 @@ const navItems = [
     touch-action: manipulation;
   }
 
-  .mobile-donate-btn {
-    width: 100%;
-    text-align: center;
-    min-height: 52px;
-    font-size: 0.95rem;
-    border-color: var(--color-brand-primary);
-    color: var(--color-ink);
-    touch-action: manipulation;
-  }
 
   @media (max-width: 900px) {
     .desktop-nav {
       display: none;
     }
-    .btn-cta,
-    .nav-donate-link {
+    .btn-cta {
       display: none;
     }
     .mobile-toggle {

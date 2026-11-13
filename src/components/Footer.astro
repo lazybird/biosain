@@ -58,10 +58,16 @@ const currentYear = new Date().getFullYear();
 
       <div class="footer-support-box">
         <span class="footer-support-badge">Solidarität</span>
-        <p class="footer-support-text">Unterstützen Sie unsere Bildungs- & Regenerationsprojekte.</p>
-        <a href="https://www.leetchi.com/fr/c/biosain-1768159" target="_blank" rel="noopener noreferrer" class="footer-support-btn">
-          Spenden & Fördern ↗
-        </a>
+        <p class="footer-support-text">Unterstützen Sie unsere Bildungs- und Betriebsprojekte.</p>
+        <p class="footer-support-title">Spenden & Fördern</p>
+        <div class="footer-support-links">
+          <a href="https://donorbox.org/nakobio/" target="_blank" rel="noopener noreferrer" class="footer-support-btn">
+            Nakôbio – Bildungsprojekte ↗
+          </a>
+          <a href="https://www.leetchi.com/fr/c/biosain-1768159" target="_blank" rel="noopener noreferrer" class="footer-support-btn">
+            Biosain – Betriebsprojekte ↗
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -249,6 +255,20 @@ const currentYear = new Date().getFullYear();
     color: #D6D0BC;
     margin-bottom: var(--space-3);
     line-height: 1.4;
+  }
+
+  .footer-support-title {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    color: #FFFDF6;
+    margin: 0 0 var(--space-2);
+  }
+
+  .footer-support-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
   }
 
   .footer-support-btn {
