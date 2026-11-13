@@ -121,49 +121,6 @@ import { SAISON } from '../data/anteile';
       </div>
     </div>
   </section>
-
-  <!-- Drei Tipps fürs Einpflanzen -->
-  <section class="section-padding tips-section">
-    <div class="container container-narrow">
-      <div class="text-center mb-8">
-        <span class="eyebrow">Praxiswissen</span>
-        <h2>Drei Tipps für gesunde Pflanzen</h2>
-        <p>So gelingt der Start in euren Beeten und Pflanzkübeln optimal:</p>
-      </div>
-
-      <div class="tips-grid">
-        <div class="tip-card">
-          <div class="tip-number">01</div>
-          <div class="tip-body">
-            <h3>Nicht zu früh ins Freie setzen</h3>
-            <p>
-              Wartet bei frostempfindlichen Fruchtgemüsearten wie Paradeisern, Paprika, Chili und Kürbis unbedingt bis nach den Eisheiligen (Mitte Mai). Späte Kälteeinbrüche können die jungen Wurzeln nachhaltig schädigen.
-            </p>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <div class="tip-number">02</div>
-          <div class="tip-body">
-            <h3>Den Boden lebendig vorbereiten</h3>
-            <p>
-              Verzichtet auf mineralischen Kunstdünger. Eine gut gereifte Schicht Kompost oder Pflanzenmulch fördert das mikrobiologische Bodenleben, nährt die Pflanze kontinuierlich und speichert wertvolle Feuchtigkeit.
-            </p>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <div class="tip-number">03</div>
-          <div class="tip-body">
-            <h3>Bunte Mischkultur pflanzen</h3>
-            <p>
-              Mischt verschiedene Kulturen nebeneinander (z. B. Paradeiser mit Basilikum oder Ringelblumen). Echte Vielfalt schützt vor Monokultur-Schädlingen und lockt natürliche Nützlinge in euren Garten.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
@@ -296,58 +253,9 @@ import { SAISON } from '../data/anteile';
     margin-top: auto;
   }
 
-  /* Tips section */
-  .tips-section {
-    background-color: var(--color-surface);
-  }
-
-  .tips-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .tip-card {
-    display: flex;
-    gap: var(--space-5);
-    background: var(--color-surface-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: clamp(1.25rem, 3vw, 2rem);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .tip-number {
-    font-family: var(--font-serif);
-    font-size: 2.2rem;
-    font-weight: var(--weight-bold);
-    color: var(--color-brand-primary);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 48px;
-  }
-
-  .tip-body h3 {
-    font-size: 1.2rem;
-    margin-bottom: var(--space-2);
-  }
-
-  .tip-body p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
   @media (max-width: 900px) {
     .market-cards-grid {
       grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .tip-card {
-      flex-direction: column;
-      gap: var(--space-2);
     }
   }
 </style>
