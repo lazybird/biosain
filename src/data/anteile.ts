@@ -2,9 +2,9 @@ export const SAISON = 2027;
 export const ANZAHL_ERNTEANTEILE = 34;
 
 export const anteile = [
-  { label: "1 Anteil", personen: "ideal für 1–2 Personen", preis: 790 },
-  { label: "2 Anteile", personen: "für 3–4 Personen", preis: 1070 },
-  { label: "3 Anteile", personen: "für 5–6 Personen", preis: 1070 * 2 },
+  { label: "1 kleiner Ernteanteil", personen: "für den Single-Haushalt", preis: 790 },
+  { label: "1 Ernteanteil", personen: "ideal für 1–2 Personen oder Kleinfamilie", preis: 1070 },
+  { label: "1 großer Ernteanteil", personen: "ideal für Gemüsetiger-Familien", preis: 1070 * 2 },
 ];
 
 const euro = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
