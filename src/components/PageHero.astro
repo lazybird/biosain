@@ -6,14 +6,15 @@ interface Props {
   lead?: string;
   imagePosition?: string;
   parallax?: boolean;
+  fit?: 'cover' | 'height';
 }
 
-const { image, eyebrow, title, lead, imagePosition = "center center", parallax = true } = Astro.props;
+const { image, eyebrow, title, lead, imagePosition = "center center", parallax = true, fit = 'cover' } = Astro.props;
 ---
 
 <section class="page-hero">
   <div
-    class:list={["page-hero-bg", { "no-parallax": !parallax }]}
+    class:list={["page-hero-bg", { "no-parallax": !parallax, "fit-height": fit === 'height' }]}
     aria-hidden="true"
     style={`background-image: url('${image}'); background-position: ${imagePosition};`}
   ></div>
@@ -52,6 +53,16 @@ const { image, eyebrow, title, lead, imagePosition = "center center", parallax =
 
   .page-hero-bg.no-parallax {
     background-attachment: scroll;
+  }
+
+  /* Image entière sur la hauteur, calée à droite, fondue vers la gauche */
+  .page-hero-bg.fit-height {
+    background-attachment: scroll;
+    background-size: auto 100%;
+    background-position: right center !important;
+    background-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 30%, #000 55%);
+    mask-image: linear-gradient(to right, transparent 0%, transparent 30%, #000 55%);
   }
 
   .page-hero-overlay {
@@ -120,6 +131,13 @@ const { image, eyebrow, title, lead, imagePosition = "center center", parallax =
   @media (max-width: 768px) {
     .page-hero-bg {
       background-attachment: scroll;
+    }
+
+    .page-hero-bg.fit-height {
+      background-size: cover;
+      background-position: center center !important;
+      -webkit-mask-image: none;
+      mask-image: none;
     }
 
     .page-hero-content :global(.page-hero-actions) {
