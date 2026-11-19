@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SolawiForm from '../components/SolawiForm.astro';
 import SolawiGauge from '../components/SolawiGauge.astro';
 import PageHero from '../components/PageHero.astro';
-import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
+import { anteile, formatPreis, proJahr, zahlungsarten, SAISON, LIEFERWOCHEN, ANZAHL_ERNTEANTEILE, LIEFERZEITRAUM, WIRTSCHAFTSJAHR } from '../data/anteile';
 ---
 
 <BaseLayout 
@@ -152,24 +152,42 @@ import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
         <table>
           <tbody>
             <tr>
-              <th style="width: 32%;">Saison</th>
-              <td><strong>Anfang April bis Ende November</strong></td>
+              <th style="width: 32%;">Lieferzeitraum</th>
+              <td>
+                <strong>{LIEFERZEITRAUM}</strong><br>
+                <span class="price-note">Der genaue Rhythmus richtet sich nach dem Pflanzenwachstum: Bei frühem Frühlingswetter starten wir schon im März und legen dafür bei Bedarf später eine Lieferpause ein. Termine kündigen wir rechtzeitig im Erntebrief an.</span>
+              </td>
             </tr>
             <tr>
               <th>Lieferrhythmus</th>
-              <td>Wöchentlich freitags (33 Lieferwochen, insgesamt 34 Ernteanteile)</td>
+              <td>Wöchentlich freitags ({LIEFERWOCHEN} Lieferwochen, insgesamt {ANZAHL_ERNTEANTEILE} Ernteanteile inkl. Doppel-Kiste zum Saisonabschluss)</td>
             </tr>
             <tr>
-              <th>Saisonbeitrag</th>
+              <th>Wirtschaftsjahr</th>
+              <td>{WIRTSCHAFTSJAHR}</td>
+            </tr>
+            <tr>
+              <th>Solidarischer Beitrag</th>
               <td>
+                <p class="price-intro">Ihr wählt euren Beitrag selbst: den <strong>Basisbeitrag</strong> (kostendeckend), den <strong>Richtwert / Förderbeitrag</strong> (ermöglicht die Weiterentwicklung des Betriebs) oder einen individuellen Monatsbeitrag.</p>
                 <ul class="price-list">
                   {anteile.map((a) => (
                     <li>
-                      <strong>{a.label}</strong> <span class="price-note">({a.personen})</span>:
-                      <span class="price-highlight">{formatPreis(a.preis)}</span>
-                      <span class="price-note">ca. {formatProWoche(a.preis)} pro Woche</span>
+                      <strong>{a.label}</strong> <span class="price-note">({a.personen})</span>
+                      <div class="price-tiers">
+                        <span>Basis: <span class="price-highlight">{formatPreis(a.basis)}</span>/Monat <span class="price-note">({formatPreis(proJahr(a.basis))}/Jahr)</span></span>
+                        <span>Richtwert: <span class="price-highlight">{formatPreis(a.richtwert)}</span>/Monat <span class="price-note">({formatPreis(proJahr(a.richtwert))}/Jahr)</span></span>
+                      </div>
                     </li>
                   ))}
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Zahlung</th>
+              <td>
+                <ul class="price-list">
+                  {zahlungsarten.map((z) => <li>{z}</li>)}
                 </ul>
               </td>
             </tr>
@@ -230,7 +248,7 @@ import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
               <strong>Der kleine Ernteanteil</strong> ist der richtige für dich, wenn du alleine lebst, Gemüse liebst, aber nicht täglich kochst.
             </p>
             <p>
-              <strong>Der reguläre Ernteanteil</strong> ist der richtige für dich, wenn du entweder alleine lebst, aber gerne und viel mit Gemüse kochst, oder wenn ihr eine Kleinfamilie, WG oder zu zweit seid, aber nicht täglich die Muße zum Kochen habt.
+              <strong>Der ganze Ernteanteil</strong> ist der richtige für dich, wenn du entweder alleine lebst, aber gerne und viel mit Gemüse kochst, oder wenn ihr eine Kleinfamilie, WG oder zu zweit seid, aber nicht täglich die Muße zum Kochen habt.
             </p>
             <p>
               <strong>Ein großer Ernteanteil</strong> passt zu euch, wenn ihr eine Gemüsetiger-Familie seid, die täglich für mehrere Menschen kocht, die Gemüse lieben.
@@ -257,7 +275,7 @@ import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
           </summary>
           <div class="faq-answer">
             <p>
-              Füllt einfach das Anmeldeformular unten aus oder schreibt uns direkt an <strong>office.biosain@gmail.com</strong> mit dem Betreff „Ernteanteil {SAISON}". Wir melden uns innerhalb von wenigen Tagen mit der Vereinbarung und allen Details bei euch.
+              Füllt einfach die Solawi-Vereinbarung unten aus — damit meldet ihr euch verbindlich für die Saison {SAISON} an. Sollten alle Ernteanteile belegt sein, erhaltet ihr automatisch einen Platz auf unserer Warteliste. Fragen vorab? Schreibt uns gern an <strong>office.biosain@gmail.com</strong>.
             </p>
           </div>
         </details>
@@ -372,11 +390,26 @@ import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
     gap: var(--space-2);
   }
 
+  .price-list {
+    gap: var(--space-3);
+  }
+
+  .price-intro {
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-3);
+  }
+
+  .price-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-1);
+  }
+
   .price-highlight {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: var(--weight-bold);
     color: var(--color-brand-secondary-dark);
-    margin: 0 var(--space-2) 0 var(--space-1);
   }
 
   .price-note {

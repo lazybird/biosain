@@ -30,13 +30,11 @@ const {
     <p class="gauge-note">
       {available
         ? "Es sind noch Ernteanteile für die kommende Saison verfügbar."
-        : "Für diese Saison sind alle Ernteanteile vergeben."}
+        : "Alle Ernteanteile sind vergeben — mit der Anmeldung kommt ihr automatisch auf unsere Warteliste."}
     </p>
-    {available && (
-      <a href="/solawi#anmelden" class="btn btn-primary btn-sm">
-        Jetzt Platz sichern →
-      </a>
-    )}
+    <a href="/solawi#anmelden" class="btn btn-primary btn-sm">
+      {available ? "Jetzt Platz sichern →" : "Auf die Warteliste →"}
+    </a>
   </div>
 </div>
 

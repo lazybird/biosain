@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import { anteile, formatPreis, formatProWoche, SAISON } from '../data/anteile';
+import { anteile, formatPreis, proJahr, zahlungsarten, SAISON, LIEFERWOCHEN, ANZAHL_ERNTEANTEILE, LIEFERZEITRAUM, WIRTSCHAFTSJAHR } from '../data/anteile';
 
 const bank = {
   kontoinhaber: "Jahbauer-Biosain",
@@ -22,14 +22,14 @@ const bank = {
     image="/images/card-solawi.jpg"
     eyebrow="Anmeldung erfolgreich"
     title="Vielen Dank für deine Anmeldung!"
-    lead={`Wir haben deine Anmeldung zum Ernteanteil ${SAISON} erhalten. Um sie verbindlich zu machen, bitten wir dich, den Saisonbeitrag per Überweisung zu begleichen — alle Details dazu findest du unten.`}
+    lead={`Wir haben deine Anmeldung zum Ernteanteil ${SAISON} erhalten. Um sie verbindlich zu machen, bitten wir dich, deinen gewählten Beitrag per Dauerauftrag oder Einmalzahlung zu überweisen — alle Details dazu findest du unten.`}
   />
 
   <section class="section-padding container container-narrow">
     <div class="payment-card">
       <h2>Zahlungsinformationen</h2>
       <p class="payment-intro">
-        Bitte überweist den Saisonbeitrag innerhalb der nächsten 14 Tage auf folgendes Konto:
+        Bitte überweise deinen gewählten Beitrag auf folgendes Konto:
       </p>
 
       <dl class="bank-details" id="bank-details">
@@ -53,12 +53,10 @@ const bank = {
           <dd>{bank.bankname}</dd>
         </div>
         <div class="bank-row">
-          <dt>Betrag</dt>
+          <dt>Zahlungsart</dt>
           <dd>
             <ul class="recap-list">
-              {anteile.map((a) => (
-                <li>{a.label}: <strong>{formatPreis(a.preis)}</strong></li>
-              ))}
+              {zahlungsarten.map((z) => <li>{z}</li>)}
             </ul>
           </dd>
         </div>
@@ -90,19 +88,23 @@ const bank = {
         <table>
           <tbody>
             <tr>
-              <th style="width: 32%;">Saison</th>
-              <td><strong>Anfang April bis Ende November</strong></td>
+              <th style="width: 32%;">Lieferzeitraum</th>
+              <td><strong>{LIEFERZEITRAUM}</strong></td>
             </tr>
             <tr>
               <th>Lieferrhythmus</th>
-              <td>Wöchentlich freitags (33 Lieferwochen, insgesamt 34 Ernteanteile)</td>
+              <td>Wöchentlich freitags ({LIEFERWOCHEN} Lieferwochen, insgesamt {ANZAHL_ERNTEANTEILE} Ernteanteile inkl. Doppel-Kiste zum Saisonabschluss)</td>
             </tr>
             <tr>
-              <th>Saisonbeitrag</th>
+              <th>Wirtschaftsjahr</th>
+              <td>{WIRTSCHAFTSJAHR}</td>
+            </tr>
+            <tr>
+              <th>Solidarischer Beitrag</th>
               <td>
                 <ul class="recap-list">
                   {anteile.map((a) => (
-                    <li><strong>{a.label}</strong> ({a.personen}): {formatPreis(a.preis)} — ca. {formatProWoche(a.preis)} pro Woche</li>
+                    <li><strong>{a.label}</strong> ({a.personen}): Basis {formatPreis(a.basis)}/Monat ({formatPreis(proJahr(a.basis))}/Jahr) · Richtwert {formatPreis(a.richtwert)}/Monat ({formatPreis(proJahr(a.richtwert))}/Jahr)</li>
                   ))}
                 </ul>
               </td>
